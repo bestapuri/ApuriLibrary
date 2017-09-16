@@ -77,7 +77,7 @@
 		9481F2C36B08C19A6B66C01C /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		C7BD106D1BACCC4147DC2BE5 /* Pods-SBLibrary_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SBLibrary_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SBLibrary_Example/Pods-SBLibrary_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		E0ABEC5DD0E10370AAEA86BF /* Pods-SBLibrary_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SBLibrary_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SBLibrary_Tests/Pods-SBLibrary_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		F304974D63C5E57DC204D51F /* SBLibrary.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = SBLibrary.podspec; path = ../SBLibrary.podspec; sourceTree = "<group>"; };
+		F304974D63C5E57DC204D51F /* SBLibraryV2.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = SBLibraryV2.podspec; path = ../SBLibraryV2.podspec; sourceTree = "<group>"; };
 		FB788C66BDAD9BA6984CC17A /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -204,7 +204,7 @@
 		60FF7A9C1954A5C5007DD14C /* Podspec Metadata */ = {
 			isa = PBXGroup;
 			children = (
-				F304974D63C5E57DC204D51F /* SBLibrary.podspec */,
+				F304974D63C5E57DC204D51F /* SBLibraryV2.podspec */,
 				FB788C66BDAD9BA6984CC17A /* README.md */,
 				9481F2C36B08C19A6B66C01C /* LICENSE */,
 			);

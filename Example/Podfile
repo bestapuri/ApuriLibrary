@@ -1,7 +1,7 @@
 use_frameworks!
 
 target 'SBLibrary_Example' do
-  pod 'SBLibraryV2', :path => '../'
+  pod 'SBLibraryV2', :path => 'https://github.com/GameStar4Kid/SBLibraryV2.git'
 
   target 'SBLibrary_Tests' do
     inherit! :search_paths
