@@ -7,8 +7,8 @@
 //
 
 #import "SBViewController.h"
-#import <SBLibrary/BuyTool.h>
-#import <SBLibrary/UserData.h>
+#import <SBLibraryV2/BuyTool.h>
+#import <SBLibraryV2/UserData.h>
 @interface SBViewController ()
 
 @end

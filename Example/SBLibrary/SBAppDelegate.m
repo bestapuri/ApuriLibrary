@@ -7,7 +7,7 @@
 //
 
 #import "SBAppDelegate.h"
-#import <SBLibrary/BuyTool.h>
+#import <SBLibraryV2/BuyTool.h>
 @implementation SBAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
