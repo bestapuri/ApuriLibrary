@@ -80,7 +80,7 @@ static BuyTool *instance = nil;
     _controller = controller;
     _after = after;
     
-    [MBProgressHUD showHUDAddedTo:_controller.view animated:YES];
+    //[MBProgressHUD showHUDAddedTo:_controller.view animated:YES];
     
     _isLoadingProducts = YES;
     
@@ -144,7 +144,7 @@ static BuyTool *instance = nil;
 
 - (NSMutableArray <SubscriptionData *> *) getProducts{
     if (!_products || _products.count == 0) {
-        NSArray *tenors = @[@1 , @3, @2 , @12];
+        NSArray *tenors = @[@0 , @1 , @12];
         _products = [[NSMutableArray<SubscriptionData *> alloc] init];
         for (id tenor in tenors) {
             SubscriptionData *data = [[SubscriptionData alloc] init];

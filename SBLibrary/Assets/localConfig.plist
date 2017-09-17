@@ -8,5 +8,11 @@
 	<string>05780f60c2bd4927b96fa2269802c71c</string>
 	<key>iap_desc</key>
 	<string>* Record high-quality video\n* Unlimited Support \nYou can cancel anytime </string>
+	<key>tutorials</key>
+	<array>
+		<string>tutor1</string>
+		<string>tutor2</string>
+		<string>tutor3</string>
+	</array>
 </dict>
 </plist>

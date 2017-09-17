@@ -8,6 +8,7 @@
 
 #import "WebController.h"
 #import "View+MASAdditions.h"
+#import "BuyTool.h"
 @interface WebController () <UIWebViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UIWebView *webview;
@@ -67,5 +68,15 @@
 - (void)closeAction:(id)sender
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    NSLog(@"url=%@",request.URL.absoluteString);
+    if([request.URL.absoluteString containsString:@"restorePurchase"])
+    {
+        [[BuyTool sharedInstance] restore:self ];
+        return NO;
+    }
+    return YES;
 }
 @end
