@@ -27,6 +27,10 @@
 
 @property (assign, nonatomic) BOOL isLoadingProducts;
 
+@property (strong, nonatomic) UIViewController* successViewCtrl;
+
+@property (strong, nonatomic) SubscriptionCtrl* subCtrl;
+
 @end
 
 @implementation BuyTool
@@ -37,7 +41,22 @@ static BuyTool *instance = nil;
 {
     [[SKPaymentQueue defaultQueue] addTransactionObserver: self];
 }
-
+- (void)activeSB:(UIViewController*)ctrl
+{
+    self.successViewCtrl = ctrl;
+    [self initShop];
+    if ([[UserData sharedInstance] isVip])
+    {
+        [[[UIApplication sharedApplication].delegate window] setRootViewController:ctrl];
+    }
+    else
+    {
+        SubscriptionCtrl* sbCtrl = [[SubscriptionCtrl alloc] init];
+        sbCtrl.successCtrl = ctrl;
+        self.subCtrl = sbCtrl;
+        [[[UIApplication sharedApplication].delegate window] setRootViewController:sbCtrl];
+    }
+}
 - (void)stopShop
 {
     [[SKPaymentQueue defaultQueue] removeTransactionObserver:self];
@@ -356,6 +375,7 @@ static BuyTool *instance = nil;
         _afterVerify(status);
         _afterVerify = nil;
     }
+    [MBProgressHUD hideHUDForView:_controller.view animated:YES];
     NSLog(@"afterVerifyReceipt = %d",status);
 }
 
@@ -421,15 +441,13 @@ static BuyTool *instance = nil;
     if([UserData sharedInstance].isVip) return;
     if ([[BuyTool sharedInstance] getProductsCount] == 0 && ![[BuyTool sharedInstance] isLoadingProducts]) {
         [[BuyTool sharedInstance] queryAllProducts:controller after:^{
-            SubscriptionCtrl* ctrl = [[SubscriptionCtrl alloc] init];
-            [controller presentViewController:ctrl animated:YES completion:nil];
+            [[[UIApplication sharedApplication].delegate window] setRootViewController:self.subCtrl];
         }];
     }
     else
     {
         [[BuyTool sharedInstance] queryAllProducts:controller after:^{
-            SubscriptionCtrl* ctrl = [[SubscriptionCtrl alloc] init];
-            [controller presentViewController:ctrl animated:YES completion:nil];
+            [[[UIApplication sharedApplication].delegate window] setRootViewController:self.subCtrl];
         }];
     }
 }

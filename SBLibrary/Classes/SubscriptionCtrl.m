@@ -255,7 +255,8 @@
         [buyBtn setTitle:[self getStringWithSubData:data] forState:UIControlStateNormal];
         [buyBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         buyBtn.titleLabel.font = [UIFont boldSystemFontOfSize:21];
-        [buyBtn addTarget:self action:@selector(buyAction:) forControlEvents:UIControlEventTouchUpInside];
+        UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(buyAction:)];
+        [buyBtn addGestureRecognizer:tap];
         buyBtn.layer.cornerRadius = 20;
         lastBtn = buyBtn;
     }
@@ -389,7 +390,8 @@
 }
 - (void)buyAction:(id)sender
 {
-    int tag = (int)[sender tag];
+    UITapGestureRecognizer* tap = sender;
+    int tag = (int)[tap.view tag];
     SubscriptionData*data = [[BuyTool sharedInstance] getProducts][tag];
     [[BuyTool sharedInstance] buyInShop:data controller:self];
 }
@@ -460,17 +462,16 @@
 {
     if ([[UserData sharedInstance] isVip])
     {
-        [self dismissViewControllerAnimated:NO completion:nil];
+        [[[UIApplication sharedApplication].delegate window] setRootViewController:self.successCtrl];
     }
     else
     {
         [[BuyTool sharedInstance] verifyReceipt:self after:^(NSInteger status) {
             if (status == 0) {
                 if ([[UserData sharedInstance] isVip]){
-                    [self dismissViewControllerAnimated:NO completion:nil];
+                    [[[UIApplication sharedApplication].delegate window] setRootViewController:self.successCtrl];
                 }
                 else{
-                    
                     [AlertTool showGoitTip:self title:@"Your subscription expired." message:@"If you have renewed your subscription, please try to relaunch our app." aftrt:^{}];
                 }
             }

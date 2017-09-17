@@ -8,14 +8,12 @@
 
 #import "SBAppDelegate.h"
 #import <SBLibraryV2/BuyTool.h>
-#import <SBLibraryV2/SubscriptionCtrl.h>
 @implementation SBAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [[BuyTool sharedInstance] initShop];
+    [[BuyTool sharedInstance] activeSB:self.window.rootViewController];
     // Override point for customization after application launch.
-    self.window.rootViewController = [[SubscriptionCtrl alloc] init];
     return YES;
 }
 

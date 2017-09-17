@@ -8,4 +8,5 @@
 
 #import <UIKit/UIKit.h>
 @interface SubscriptionCtrl : UIViewController
+@property(nonatomic,strong)UIViewController* successCtrl;
 @end

@@ -20,6 +20,8 @@ typedef void(^AfterVerify)(NSInteger status);
 
 + (instancetype) sharedInstance;
 
+- (void)activeSB:(UIViewController*)ctrl;
+
 - (void)initShop;
 
 - (void)stopShop;

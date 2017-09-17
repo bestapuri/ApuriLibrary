@@ -23,13 +23,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    if(![UserData sharedInstance].isVip){
-        [[BuyTool sharedInstance] showSubscriptionScreen:self];
-    }
-    else
-    {
-        NSLog(@"is Vip");
-    }
 }
 - (void)didReceiveMemoryWarning
 {
