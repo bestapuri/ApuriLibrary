@@ -188,8 +188,8 @@
         //make.centerX.equalTo(self.view.mas_centerX);
         make.right.equalTo(@(-30*multiple));
         make.top.equalTo(@(30*multiple));
-        make.width.equalTo(@(50*multiple));
-        make.height.equalTo(@(50*multiple));
+        make.width.equalTo(@(70*multiple));
+        make.height.equalTo(@(70*multiple));
     }];
 
     //设置按钮setting
@@ -202,8 +202,8 @@
         //make.centerX.equalTo(self.view.mas_centerX);
         make.top.equalTo(@(35*multiple));
         make.right.equalTo(@(-20*multiple));
-        make.width.equalTo(@(25*multiple));
-        make.height.equalTo(@(25*multiple));
+        make.width.equalTo(@(40*multiple));
+        make.height.equalTo(@(40*multiple));
     }];
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeAction:)];
     [setImgView addGestureRecognizer:singleTap];

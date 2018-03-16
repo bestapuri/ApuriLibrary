@@ -233,7 +233,7 @@ static BuyTool *instance = nil;
                 [queue finishTransaction:tran];
                 [MBProgressHUD hideHUDForView:_controller.view animated:YES];
                 NSLog(@"purchased failed");
-                [AlertTool showGoitTip:_controller title:@"Purchase error. Please check your network again." aftrt:nil];
+                [AlertTool showGoitTip:_controller title:@"Purchase error. Please try again or check your network." aftrt:nil];
                 break;
             }
             default:

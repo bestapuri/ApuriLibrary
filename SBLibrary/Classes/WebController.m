@@ -43,8 +43,8 @@
         //make.centerX.equalTo(self.view.mas_centerX);
         make.top.equalTo(@(35));
         make.right.equalTo(@(-20));
-        make.width.equalTo(@(25));
-        make.height.equalTo(@(25));
+        make.width.equalTo(@(40));
+        make.height.equalTo(@(40));
     }];
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeAction:)];
     [setImgView addGestureRecognizer:singleTap];
