@@ -201,7 +201,7 @@
     [setImgView mas_makeConstraints:^(MASConstraintMaker *make) {
         //make.centerX.equalTo(self.view.mas_centerX);
         make.top.equalTo(@(35*multiple));
-        make.right.equalTo(@(-20*multiple));
+        make.left.equalTo(@(20*multiple));
         make.width.equalTo(@(40*multiple));
         make.height.equalTo(@(40*multiple));
     }];
