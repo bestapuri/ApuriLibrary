@@ -463,6 +463,7 @@
     if ([[UserData sharedInstance] isVip])
     {
         [[[UIApplication sharedApplication].delegate window] setRootViewController:self.successCtrl];
+        [AlertTool showGoitTip:_successCtrl title:@"Thanks for purchasing." aftrt:nil];
     }
     else
     {
@@ -470,6 +471,7 @@
             if (status == 0) {
                 if ([[UserData sharedInstance] isVip]){
                     [[[UIApplication sharedApplication].delegate window] setRootViewController:self.successCtrl];
+                    [AlertTool showGoitTip:_successCtrl title:@"Thanks for purchasing." aftrt:nil];
                 }
                 else{
                     [AlertTool showGoitTip:self title:@"Your subscription expired." message:@"If you have renewed your subscription, please try to relaunch our app." aftrt:^{}];
