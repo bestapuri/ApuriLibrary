@@ -423,6 +423,7 @@
 - (void)closeAction:(id)sender
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"SUBSCRIPTION_CLOSE" object:nil];
+    [[[UIApplication sharedApplication].delegate window] setRootViewController:self.successCtrl];
 }
 - (NSString*) getStringWithSubData:(SubscriptionData*)data
 {
