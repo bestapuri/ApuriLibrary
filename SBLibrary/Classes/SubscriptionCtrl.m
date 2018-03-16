@@ -153,7 +153,7 @@
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         multiple = 1.3;
     } else if(isiPhone5) {
-        multiple = 1;
+        multiple = 0.8;
     } else
     {
         multiple = 0.8;
@@ -437,7 +437,7 @@
     }
     else if(data.tenorMonth==0)
     {
-        [str appendString:@"TRY FOR FREE"];
+        [str appendString:@"TRIAL 3 DAYS"];
     }
     return str;
 }
