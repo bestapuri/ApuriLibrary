@@ -163,7 +163,12 @@ static BuyTool *instance = nil;
 
 - (NSMutableArray <SubscriptionData *> *) getProducts{
     if (!_products || _products.count == 0) {
+        NSArray* numIAPIds = [BuyTool getCongfigInFile:@"IAPIds"];
         NSArray *tenors = @[@0 , @1 , @12];
+        if(numIAPIds.count>0)
+        {
+            tenors = numIAPIds;
+        }
         _products = [[NSMutableArray<SubscriptionData *> alloc] init];
         for (id tenor in tenors) {
             SubscriptionData *data = [[SubscriptionData alloc] init];

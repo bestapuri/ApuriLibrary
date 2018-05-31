@@ -3,17 +3,29 @@
 <plist version="1.0">
 <dict>
 	<key>app_id</key>
-	<string>1274553152</string>
+	<string>1286540210</string>
 	<key>shared_secret</key>
-	<string>05780f60c2bd4927b96fa2269802c71c</string>
+	<string>6bd604c33dde41c39e419f95a31b88f8</string>
 	<key>tutorials</key>
 	<array>
 		<string>tutor1</string>
 		<string>tutor2</string>
+		<string>tutor3</string>
 	</array>
 	<key>appName</key>
-	<string>WALLPAPERS</string>
+	<string>Web Recorder</string>
 	<key>appUnlock</key>
-	<string>Access unlimited to all photos</string>
+	<string>Access unlimited features and record your video games</string>
+	<key>privacyText</key>
+	<string>Web Recorder subscriptions will renew within 24 hours before the subscription period ends, and you will be charged through your iTunes account.
+        
+        If you purchase a new Web Recorder during a free trial, you will forfeit any free trial period remaining from your first subscription.
+        
+        You can manage and cancel your subscription in your iTunes Account Settings at any time.</string>
+	<key>IAPIds</key>
+	<array>
+		<string>1</string>
+		<string>12</string>
+	</array>
 </dict>
 </plist>

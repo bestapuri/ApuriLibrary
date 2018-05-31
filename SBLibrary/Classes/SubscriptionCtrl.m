@@ -20,7 +20,9 @@
     
     CHIPageControlAji *pageControl;
     UIScrollView *scroll;
-    NSMutableArray* arrLabel;
+    NSMutableArray* arrBtnBuy;
+    UIView* _mainView;
+    CGFloat _screenHeight;
 }
 @property (nonatomic, strong) IFTTTAnimator *animator;
 @end
@@ -32,7 +34,6 @@
     // Do any additional setup after loading the view.
     self.animator = [IFTTTAnimator new];
     //[self initView];
-    [self setUpPageView];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(finishPurchasedRestore) name:FINISH_PURCHAED_RESTORED object:nil];
     if ([[BuyTool sharedInstance] getProductsCount] == 0 && ![[BuyTool sharedInstance] isLoadingProducts]) {
         [[BuyTool sharedInstance] queryAllProducts:self after:^{
@@ -50,6 +51,27 @@
         }];
     }
 }
+- (void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    if(_screenHeight==0)
+    {
+        CGSize screen = [UIScreen mainScreen].bounds.size;
+        CGFloat screenHeight = screen.height;
+        if (@available(iOS 11.0, *)) {
+            UIWindow *window = UIApplication.sharedApplication.keyWindow;
+            CGFloat topPadding = window.safeAreaInsets.top;
+            CGFloat bottomPadding = window.safeAreaInsets.bottom;
+            screenHeight = screen.height - topPadding - bottomPadding;
+            _screenHeight = screenHeight;
+        }
+        else
+        {
+            _screenHeight = screenHeight;
+        }
+        [self setUpPageView];
+    }
+}
 - (void)setUpPageView
 {
     NSArray* numPagesArr = [BuyTool getCongfigInFile:@"tutorials"];
@@ -62,14 +84,16 @@
     [numPages addObject:@""];//add this for sbview
     // Scroll View
     CGSize screen = [UIScreen mainScreen].bounds.size;
-    scroll = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, screen.width, screen.height)];
+    CGFloat screenHeight = screen.height;
+    if(_screenHeight==0) _screenHeight=screenHeight;
+    scroll = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, screen.width, _screenHeight)];
     scroll.backgroundColor=[UIColor clearColor];
     scroll.delegate=self;
     scroll.pagingEnabled=YES;
     [scroll setContentSize:CGSizeMake(scroll.frame.size.width*numPages.count, scroll.frame.size.height)];
     
     // page control
-    pageControl = [[CHIPageControlAji alloc]initWithFrame:CGRectMake(0, screen.height-56, screen.width, 56)];
+    pageControl = [[CHIPageControlAji alloc]initWithFrame:CGRectMake(0, _screenHeight-56, screen.width, 56)];
     pageControl.backgroundColor=[UIColor clearColor];
     pageControl.numberOfPages=numPages.count;
     pageControl.radius = 4;
@@ -82,7 +106,7 @@
     for(int i=1;i<=numPages.count-1;i++)
     {
         
-        UIImageView *image = [[UIImageView alloc] initWithFrame:CGRectMake(x+0, 0, screen.width, screen.height)];
+        UIImageView *image = [[UIImageView alloc] initWithFrame:CGRectMake(x+0, 0, screen.width, _screenHeight)];
         NSString* filename = numPages[i-1];
         [image setImage:[UIImage imageNamed:filename]];
         [scroll addSubview:image];
@@ -103,10 +127,53 @@
     [alphaAnimation addKeyframeForTime:x alpha:1.f];
     [self.animator addAnimation: alphaAnimation];
     
-    [self.view addSubview:scroll];
+    UIView * myView = [[UIView alloc] initWithFrame:self.view.frame];// initialize view using IBOutlet or programtically
     
-    [self.view addSubview:pageControl];
+    myView.backgroundColor = [UIColor blackColor];
+    self.view.backgroundColor = [UIColor whiteColor];
+    myView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:myView];
+    if (@available(iOS 11, *)) {
+        UILayoutGuide * guide = self.view.safeAreaLayoutGuide;
+        [myView.leadingAnchor constraintEqualToAnchor:guide.leadingAnchor].active = YES;
+        [myView.trailingAnchor constraintEqualToAnchor:guide.trailingAnchor].active = YES;
+        [myView.topAnchor constraintEqualToAnchor:guide.topAnchor].active = YES;
+        [myView.bottomAnchor constraintEqualToAnchor:guide.bottomAnchor].active = YES;
+    } else {
+        UILayoutGuide *margins = self.view.layoutMarginsGuide;
+        [myView.leadingAnchor constraintEqualToAnchor:margins.leadingAnchor].active = YES;
+        [myView.trailingAnchor constraintEqualToAnchor:margins.trailingAnchor].active = YES;
+        [myView.topAnchor constraintEqualToAnchor:self.topLayoutGuide.bottomAnchor].active = YES;
+        [myView.bottomAnchor constraintEqualToAnchor:self.bottomLayoutGuide.topAnchor].active = YES;
+    }
+    
+    _mainView = myView;
+
+    [_mainView addSubview:scroll];
+    
+    [_mainView addSubview:pageControl];
+//    [self setupSafeArea:scroll parent:_mainView];
+//    [self setupSafeArea:pageControl parent:_mainView];
 }
+
+- (void)setupSafeArea:(UIView*)myView parent:(UIView*)parent
+{
+    myView.translatesAutoresizingMaskIntoConstraints = NO;
+    if (@available(iOS 11, *)) {
+        UILayoutGuide * guide = parent.safeAreaLayoutGuide;
+        [myView.leadingAnchor constraintEqualToAnchor:guide.leadingAnchor].active = YES;
+        [myView.trailingAnchor constraintEqualToAnchor:guide.trailingAnchor].active = YES;
+        [myView.topAnchor constraintEqualToAnchor:guide.topAnchor].active = YES;
+        [myView.bottomAnchor constraintEqualToAnchor:guide.bottomAnchor].active = YES;
+    } else {
+        UILayoutGuide *margins = parent.layoutMarginsGuide;
+        [myView.leadingAnchor constraintEqualToAnchor:margins.leadingAnchor].active = YES;
+        [myView.trailingAnchor constraintEqualToAnchor:margins.trailingAnchor].active = YES;
+        [myView.topAnchor constraintEqualToAnchor:self.topLayoutGuide.bottomAnchor].active = YES;
+        [myView.bottomAnchor constraintEqualToAnchor:self.bottomLayoutGuide.topAnchor].active = YES;
+    }
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -146,9 +213,11 @@
 }
 */
 -(UIView*) setupSBView:(int)numPages {
-    arrLabel = [NSMutableArray arrayWithCapacity:0];
+    arrBtnBuy = [NSMutableArray arrayWithCapacity:0];
     CGSize screen = [UIScreen mainScreen].bounds.size;
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(screen.width*(numPages-1), 0, screen.width, screen.height)];
+    CGFloat screenHeight = screen.height;
+    if(_screenHeight==0) _screenHeight=screenHeight;
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(screen.width*(numPages-1), 0, screen.width, _screenHeight)];
     CGFloat multiple = 1;
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         multiple = 1.3;
@@ -217,7 +286,8 @@
     [view addSubview:title];
     [title mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(view.mas_centerX);
-        make.top.equalTo(center.mas_bottom).offset(5*multiple);
+//        make.top.equalTo(center.mas_bottom).offset(5*multiple);
+        make.top.equalTo(@(40*multiple));
         make.width.equalTo(@(320*multiple));
         make.height.equalTo(@(40*multiple));
     }];
@@ -254,137 +324,125 @@
         NSLog(@"price = %@",data.amountDisplay);
         [buyBtn setTitle:[self getStringWithSubData:data] forState:UIControlStateNormal];
         [buyBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        buyBtn.titleLabel.font = [UIFont boldSystemFontOfSize:21];
+        buyBtn.titleLabel.font = [UIFont boldSystemFontOfSize:17];
         UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(buyAction:)];
         [buyBtn addGestureRecognizer:tap];
         buyBtn.layer.cornerRadius = 20;
         lastBtn = buyBtn;
+        [arrBtnBuy addObject:lastBtn];
     }
     index++;
-    UIView * buyBtn2 = [[UIView alloc]init];
-    SubscriptionData* data = [[BuyTool sharedInstance] getProducts][index];
-    if(![data.amountDisplay isEqualToString:@"(null) (null)"])
+    buyBtn = [[UIButton alloc]init];
+    if(index<[[BuyTool sharedInstance] getProducts].count)
     {
-        buyBtn2.tag=index;
-        [view addSubview:buyBtn2];
-        [buyBtn2 mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.equalTo(view.mas_centerX);
-            make.top.equalTo(buyBtn.mas_bottom).offset(35*multiple);
-            make.width.equalTo(@(380*multiple));
-            make.height.equalTo(@(70*multiple));
-        }];
-        buyBtn2.backgroundColor = [UIColor colorWithRed:237/255.0 green:237/255.0 blue:237/255.0 alpha:1];
-        NSLog(@"price = %@",data.amountDisplay);
-        UILabel*leftTitle = [[UILabel alloc] init];
-        leftTitle.text  = [self getStringWithSubData:data];
-        leftTitle.textColor = [UIColor colorWithRed:90/255.0 green:90/255.0 blue:90/255.0 alpha:1];
-        leftTitle.font = [UIFont boldSystemFontOfSize:21];
-        leftTitle.textAlignment = NSTextAlignmentLeft;
-        [buyBtn2 addSubview:leftTitle];
-        [leftTitle mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(@(15*multiple));
-            make.centerY.equalTo(buyBtn2.mas_centerY);
-            make.width.equalTo(@(180*multiple));
-            make.height.equalTo(@(70*multiple));
-        }];
-        
-        UILabel*rightTitle = [[UILabel alloc] init];
-        rightTitle.text  = [self getDisplayStringWithSubData:data];
-        rightTitle.textColor = [UIColor colorWithRed:90/255.0 green:90/255.0 blue:90/255.0 alpha:1];
-        rightTitle.font = [UIFont boldSystemFontOfSize:21];
-        rightTitle.textAlignment = NSTextAlignmentRight;
-        [buyBtn2 addSubview:rightTitle];
-        [rightTitle mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.equalTo(@(-15*multiple));
-            make.centerY.equalTo(buyBtn2.mas_centerY);
-            make.width.equalTo(@(180*multiple));
-            make.height.equalTo(@(60*multiple));
-        }];
-        [arrLabel addObject:rightTitle];
-        UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(buyAction:)];
-        [buyBtn2 addGestureRecognizer:tap];
-        buyBtn2.layer.cornerRadius = 20;
-        lastBtn = buyBtn2;
-        
-        UIImageView * popular = [[UIImageView alloc]init];
-        popular.contentMode = UIViewContentModeScaleToFill;
-        popular.image = [UIImage imageNamed:@"popular_icon"];
-        [buyBtn2 addSubview:popular];
-        [popular mas_makeConstraints:^(MASConstraintMaker *make) {
-            //make.centerX.equalTo(self.view.mas_centerX);
-            make.bottom.equalTo(buyBtn2.mas_top).offset(10*multiple);
-            make.right.equalTo(@(10*multiple));
-            make.height.equalTo(@(35*multiple));
-            make.width.equalTo(@(106*multiple));
-        }];
+        SubscriptionData* data = [[BuyTool sharedInstance] getProducts][index];
+        if(![data.amountDisplay isEqualToString:@"(null) (null)"])
+        {
+            [view addSubview:buyBtn];
+            buyBtn.tag=index;
+            [buyBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.centerX.equalTo(view.mas_centerX);
+                make.top.equalTo(lastBtn.mas_bottom).offset(35*multiple);
+                make.width.equalTo(@(380*multiple));
+                make.height.equalTo(@(70*multiple));
+            }];
+            buyBtn.backgroundColor = [UIColor colorWithRed:107/255.0 green:185/255.0 blue:70/255.0 alpha:1];
+            SubscriptionData* data = [[BuyTool sharedInstance] getProducts][index];
+            NSLog(@"price = %@",data.amountDisplay);
+            [buyBtn setTitle:[self getStringWithSubData:data] forState:UIControlStateNormal];
+            [buyBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            buyBtn.titleLabel.font = [UIFont boldSystemFontOfSize:17];
+            UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(buyAction:)];
+            [buyBtn addGestureRecognizer:tap];
+            buyBtn.layer.cornerRadius = 20;
+            lastBtn = buyBtn;
+            [arrBtnBuy addObject:lastBtn];
+            
+            UIImageView * popular = [[UIImageView alloc]init];
+            popular.contentMode = UIViewContentModeScaleToFill;
+            popular.image = [UIImage imageNamed:@"popular_icon"];
+            [buyBtn addSubview:popular];
+            [popular mas_makeConstraints:^(MASConstraintMaker *make) {
+                //make.centerX.equalTo(self.view.mas_centerX);
+                make.bottom.equalTo(buyBtn.mas_top).offset(10*multiple);
+                make.right.equalTo(@(10*multiple));
+                make.height.equalTo(@(35*multiple));
+                make.width.equalTo(@(106*multiple));
+            }];
+        }
     }
-    
-    
-    
     
     index++;
-    UIView * buyBtn3 = [[UIView alloc]init];
-    data = [[BuyTool sharedInstance] getProducts][index];
-    if(![data.amountDisplay isEqualToString:@"(null) (null)"])
+    buyBtn = [[UIButton alloc]init];
+    if(index<[[BuyTool sharedInstance] getProducts].count)
     {
-        buyBtn3.tag=index;
-        [view addSubview:buyBtn3];
-        [buyBtn3 mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.equalTo(view.mas_centerX);
-            make.top.equalTo(buyBtn2.mas_bottom).offset(15*multiple);
-            make.width.equalTo(@(380*multiple));
-            make.height.equalTo(@(60*multiple));
-        }];
-        
-        buyBtn3.backgroundColor = [UIColor colorWithRed:237/255.0 green:237/255.0 blue:237/255.0 alpha:1];
-        UILabel*leftTitle = [[UILabel alloc] init];
-        leftTitle.text  = [self getStringWithSubData:data];
-        leftTitle.textColor = [UIColor colorWithRed:90/255.0 green:90/255.0 blue:90/255.0 alpha:1];
-        leftTitle.font = [UIFont boldSystemFontOfSize:21];
-        leftTitle.textAlignment = NSTextAlignmentLeft;
-        [buyBtn3 addSubview:leftTitle];
-        [leftTitle mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(@(15*multiple));
-            make.centerY.equalTo(buyBtn3.mas_centerY);
-            make.width.equalTo(@(180*multiple));
-            make.height.equalTo(@(60*multiple));
-        }];
-        
-        UILabel*rightTitle = [[UILabel alloc] init];
-        rightTitle.text  = [self getDisplayStringWithSubData:data];
-        rightTitle.textColor = [UIColor colorWithRed:90/255.0 green:90/255.0 blue:90/255.0 alpha:1];
-        rightTitle.font = [UIFont boldSystemFontOfSize:21];
-        rightTitle.textAlignment = NSTextAlignmentRight;
-        [buyBtn3 addSubview:rightTitle];
-        [rightTitle mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.equalTo(@(-15*multiple));
-            make.centerY.equalTo(buyBtn3.mas_centerY);
-            make.width.equalTo(@(180*multiple));
-            make.height.equalTo(@(60*multiple));
-        }];
-        [arrLabel addObject:rightTitle];
-        UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(buyAction:)];
-        [buyBtn3 addGestureRecognizer:tap];
-        
-        
-        buyBtn3.layer.cornerRadius = 20;
-        lastBtn = buyBtn3;
+        SubscriptionData*data = [[BuyTool sharedInstance] getProducts][index];
+        if(![data.amountDisplay isEqualToString:@"(null) (null)"])
+        {
+            [view addSubview:buyBtn];
+            buyBtn.tag=index;
+            [buyBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.centerX.equalTo(view.mas_centerX);
+                make.top.equalTo(lastBtn.mas_bottom).offset(15*multiple);
+                make.width.equalTo(@(380*multiple));
+                make.height.equalTo(@(70*multiple));
+            }];
+            buyBtn.backgroundColor = [UIColor colorWithRed:107/255.0 green:185/255.0 blue:70/255.0 alpha:1];
+            SubscriptionData* data = [[BuyTool sharedInstance] getProducts][index];
+            NSLog(@"price = %@",data.amountDisplay);
+            [buyBtn setTitle:[self getStringWithSubData:data] forState:UIControlStateNormal];
+            [buyBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            buyBtn.titleLabel.font = [UIFont boldSystemFontOfSize:17];
+            UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(buyAction:)];
+            [buyBtn addGestureRecognizer:tap];
+            buyBtn.layer.cornerRadius = 20;
+            lastBtn = buyBtn;
+            [arrBtnBuy addObject:lastBtn];
+        }
     }
+    
+    UILabel* privacyLbl = [[UILabel alloc] init];
+    privacyLbl.numberOfLines=0;
+    privacyLbl.font = [UIFont systemFontOfSize:13];
+    privacyLbl.adjustsFontSizeToFitWidth = YES;
+    privacyLbl.text = [BuyTool getCongfigInFile:@"privacyText"];
+    privacyLbl.textAlignment = NSTextAlignmentCenter;
+    [view addSubview:privacyLbl];
+    [privacyLbl mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(lastBtn.mas_bottom).offset(15*multiple);
+        make.centerX.equalTo(view.mas_centerX);
+        make.width.equalTo(@(380*multiple));
+        make.height.equalTo(@(200*multiple));
+    }];
+    
+    UIButton * btnPrivacy = [[UIButton alloc] init];
+    [btnPrivacy setTitle:@"Terms and Privacy Policy" forState:UIControlStateNormal];
+    [btnPrivacy setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
+    [btnPrivacy addTarget:self action:@selector(tosAction:) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:btnPrivacy];
+    [btnPrivacy mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(view.mas_centerX);
+        make.top.equalTo(privacyLbl.mas_bottom).offset(10*multiple);
+        make.width.equalTo(@(280*multiple));
+        make.height.equalTo(@(70*multiple));
+    }];
+    
     return view;
 }
 - (void)updatePrice
 {
-    if(arrLabel.count==0)return;
+    if(arrBtnBuy.count==0)return;
     int i=0;
     for(SubscriptionData*data in [[BuyTool sharedInstance] getProducts])
     {
-        if(i==0)
-        {
-            i++;
-            continue;
-        }
-        UILabel* label= arrLabel[i-1];
-        label.text = data.amountDisplay;
+        NSLog(@"i=%d,data = %@",i,data.amountDisplay);
+        UIButton* button = arrBtnBuy[i];
+        button.titleLabel.numberOfLines = 0;
+        button.titleLabel.textAlignment = NSTextAlignmentCenter;
+        button.titleLabel.font = [UIFont systemFontOfSize:15];
+        NSString* title = [NSString
+                           stringWithFormat:@"Three days Free Trial!\nthen %@  %@",data.amountDisplay,[self getStringWithSubData:data]];
+        [button setTitle:title forState:UIControlStateNormal];
         i++;
     }
 }
@@ -430,15 +488,19 @@
     NSMutableString* str = [NSMutableString stringWithCapacity:0];
     if(data.tenorMonth==1)
     {
-        [str appendString:@"MONTHLY"];
+        [str appendString:@"per month"];
+    }
+    else if(data.tenorMonth==3)
+    {
+        [str appendString:@"every three months"];
     }
     else if(data.tenorMonth==12)
     {
-        [str appendString:@"ANNUALLY"];
+        [str appendString:@"per year"];
     }
     else if(data.tenorMonth==0)
     {
-        [str appendString:@"TRIAL 3 DAYS"];
+        [str appendString:@"per week"];
     }
     return str;
 }
