@@ -418,7 +418,7 @@
     UIButton * btnPrivacy = [[UIButton alloc] init];
     [btnPrivacy setTitle:@"Terms and Privacy Policy" forState:UIControlStateNormal];
     [btnPrivacy setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
-    [btnPrivacy addTarget:self action:@selector(tosAction:) forControlEvents:UIControlEventTouchUpInside];
+    [btnPrivacy addTarget:self action:@selector(privacyAction:) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:btnPrivacy];
     [btnPrivacy mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(view.mas_centerX);
@@ -502,10 +502,7 @@
     WebController *webController = [[WebController alloc] init];
     webController.url = @"private";
     webController.titleKey = @"Privacy Policy";
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-        [[[UIApplication sharedApplication].delegate window].rootViewController presentViewController:webController animated:NO completion:nil];
-    }];
+    [[[UIApplication sharedApplication].delegate window].rootViewController presentViewController:webController animated:NO completion:nil];
 }
 - (void)tosAction:(id)sender
 {
