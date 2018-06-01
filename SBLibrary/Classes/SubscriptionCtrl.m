@@ -430,6 +430,7 @@
     UIButton * btnSkip = [[UIButton alloc] init];
     [btnSkip setTitle:@"Remind me later" forState:UIControlStateNormal];
     [btnSkip setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
+    btnSkip.titleLabel.adjustsFontSizeToFitWidth = YES;
     [btnSkip addTarget:self action:@selector(closeAction:) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:btnSkip];
     [btnSkip mas_makeConstraints:^(MASConstraintMaker *make) {
