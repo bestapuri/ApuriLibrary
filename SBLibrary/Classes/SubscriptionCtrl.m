@@ -427,6 +427,18 @@
         make.height.equalTo(@(70*multiple));
     }];
     
+    UIButton * btnSkip = [[UIButton alloc] init];
+    [btnSkip setTitle:@"Remind me later" forState:UIControlStateNormal];
+    [btnSkip setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
+    [btnSkip addTarget:self action:@selector(closeAction:) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:btnSkip];
+    [btnSkip mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(view.mas_centerX);
+        make.top.equalTo(btnPrivacy.mas_bottom).offset(10*multiple);
+        make.width.equalTo(@(150*multiple));
+        make.height.equalTo(@(70*multiple));
+    }];
+    
     return view;
 }
 - (void)updatePrice
@@ -437,14 +449,37 @@
     {
         NSLog(@"i=%d,data = %@",i,data.amountDisplay);
         UIButton* button = arrBtnBuy[i];
-        button.titleLabel.numberOfLines = 0;
-        button.titleLabel.textAlignment = NSTextAlignmentCenter;
-        button.titleLabel.font = [UIFont systemFontOfSize:15];
-        NSString* title = [NSString
-                           stringWithFormat:@"Three days Free Trial!\nthen %@  %@",data.amountDisplay,[self getStringWithSubData:data]];
-        [button setTitle:title forState:UIControlStateNormal];
+//        button.titleLabel.numberOfLines = 0;
+//        button.titleLabel.textAlignment = NSTextAlignmentCenter;
+//        button.titleLabel.font = [UIFont systemFontOfSize:15];
+//        NSString* title = [NSString
+//                           stringWithFormat:@"Three days Free Trial!\nthen %@  %@",data.amountDisplay,[self getStringWithSubData:data]];
+//        [button setTitle:title forState:UIControlStateNormal];
+        [self setupButtonPrice:button data:data];
         i++;
+        
     }
+}
+- (void)setupButtonPrice:(UIButton*)button data:(SubscriptionData*)data
+{
+    NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    [style setAlignment:NSTextAlignmentCenter];
+    [style setLineBreakMode:NSLineBreakByWordWrapping];
+    
+    UIFont *font1 = [UIFont fontWithName:@"HelveticaNeue-Medium" size:20.0f];
+    UIFont *font2 = [UIFont fontWithName:@"HelveticaNeue-Light"  size:17.0f];
+    NSDictionary *dict1 = @{NSUnderlineStyleAttributeName:@(NSUnderlineStyleNone),
+                            NSFontAttributeName:font1,
+                            NSParagraphStyleAttributeName:style}; // Added line
+    NSDictionary *dict2 = @{NSUnderlineStyleAttributeName:@(NSUnderlineStyleNone),
+                            NSFontAttributeName:font2,
+                            NSParagraphStyleAttributeName:style}; // Added line
+    
+    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] init];
+    [attString appendAttributedString:[[NSAttributedString alloc] initWithString:@"Three days Free Trial!\n"    attributes:dict1]];
+    [attString appendAttributedString:[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"then %@  %@",data.amountDisplay,[self getStringWithSubData:data]]      attributes:dict2]];
+    button.titleLabel.numberOfLines = 0;
+    [button setAttributedTitle:attString forState:UIControlStateNormal];
 }
 - (void)buyAction:(id)sender
 {
