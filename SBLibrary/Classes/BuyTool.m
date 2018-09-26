@@ -31,6 +31,8 @@
 
 @property (strong, nonatomic) SubscriptionCtrl* subCtrl;
 
+@property (strong, nonatomic) SubscriptionCtrl* subCtrlWeb;
+
 @end
 
 @implementation BuyTool
@@ -60,10 +62,13 @@ static BuyTool *instance = nil;
 - (void)showActiveSB2:(UIViewController*)ctrl
 {
     self.successViewCtrl = ctrl;
-    SubscriptionCtrl* sbCtrl = [[SubscriptionCtrl alloc] init];
-    sbCtrl.successCtrl = ctrl;
-    self.subCtrl = sbCtrl;
-    self.subCtrl.screenType = HALFSCREEN;
+    if(!self.subCtrl)
+    {
+        SubscriptionCtrl* sbCtrl = [[SubscriptionCtrl alloc] init];
+        sbCtrl.successCtrl = ctrl;
+        self.subCtrl = sbCtrl;
+        self.subCtrl.screenType = HALFSCREEN;
+    }
     [UIView transitionWithView:ctrl.view duration:0.5
 options:UIViewAnimationOptionTransitionCrossDissolve //change to whatever animation you like
                     animations:^ {
@@ -76,15 +81,19 @@ options:UIViewAnimationOptionTransitionCrossDissolve //change to whatever animat
 - (void)showInternalWebView:(UIViewController*)ctrl url:(NSString*)url title:(NSString*)title
 {
     self.successViewCtrl = ctrl;
-    SubscriptionCtrl* sbCtrl = [[SubscriptionCtrl alloc] initWithURL:url title:title];
-    sbCtrl.successCtrl = ctrl;
-    self.subCtrl = sbCtrl;
-    self.subCtrl.screenType = WEBSCREEN;
+    if(!self.subCtrlWeb)
+    {
+        SubscriptionCtrl* sbCtrl = [[SubscriptionCtrl alloc] initWithURL:url title:title];
+        sbCtrl.successCtrl = ctrl;
+        self.subCtrlWeb = sbCtrl;
+        self.subCtrlWeb.screenType = WEBSCREEN;
+    }
+    
     [UIView transitionWithView:ctrl.view duration:0.5
                        options:UIViewAnimationOptionTransitionCrossDissolve //change to whatever animation you like
                     animations:^ {
-                        [ctrl.view addSubview:_subCtrl.view];
-                        [ctrl addChildViewController:_subCtrl];
+                        [ctrl.view addSubview:self.subCtrlWeb.view];
+                        [ctrl addChildViewController:self.subCtrlWeb];
                     }
                     completion:nil];
     

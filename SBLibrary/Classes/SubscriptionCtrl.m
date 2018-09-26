@@ -26,6 +26,7 @@
     CGFloat _screenHeight;
     NSString* _webURL;
     NSString* _webTitle;
+    UIView* _fullLifeTimeView;
 }
 @property (nonatomic, strong) IFTTTAnimator *animator;
 @end
@@ -469,6 +470,7 @@
 }
 - (void)btnCloseClicked:(id)sender
 {
+    [_fullLifeTimeView removeFromSuperview];
     [self removeFromParentViewController];
     [self.view removeFromSuperview];
 }
@@ -485,6 +487,7 @@
             make.width.equalTo(self.view.mas_width);
         }];
         [self setupSBViewLifeTime:fullPurchaseView];
+        _fullLifeTimeView = fullPurchaseView;
     }
     else
     {
