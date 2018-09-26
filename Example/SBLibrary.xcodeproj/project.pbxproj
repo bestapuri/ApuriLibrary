@@ -27,6 +27,9 @@
 		608B0D811F4F177C000CAB89 /* private.html in Resources */ = {isa = PBXBuildFile; fileRef = 608B0D7B1F4F177C000CAB89 /* private.html */; };
 		608B0D821F4F177C000CAB89 /* service.html in Resources */ = {isa = PBXBuildFile; fileRef = 608B0D7C1F4F177C000CAB89 /* service.html */; };
 		608B0D831F4F177C000CAB89 /* subscriptions.html in Resources */ = {isa = PBXBuildFile; fileRef = 608B0D7D1F4F177C000CAB89 /* subscriptions.html */; };
+		60B5D1A7215A9C1C0004D517 /* AppDetailIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 60B5D1A6215A9C1C0004D517 /* AppDetailIcon.png */; };
+		60B5D1AA215AADBF0004D517 /* green_check.png in Resources */ = {isa = PBXBuildFile; fileRef = 60B5D1A8215AADBE0004D517 /* green_check.png */; };
+		60B5D1AB215AADBF0004D517 /* green_check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 60B5D1A9215AADBE0004D517 /* green_check@2x.png */; };
 		60F37C031F6D835600ED2FA7 /* tutor1.png in Resources */ = {isa = PBXBuildFile; fileRef = 60F37BFF1F6D835600ED2FA7 /* tutor1.png */; };
 		60F37C041F6D835600ED2FA7 /* tutor2.png in Resources */ = {isa = PBXBuildFile; fileRef = 60F37C001F6D835600ED2FA7 /* tutor2.png */; };
 		60F37C051F6D835600ED2FA7 /* tutor3.png in Resources */ = {isa = PBXBuildFile; fileRef = 60F37C011F6D835600ED2FA7 /* tutor3.png */; };
@@ -77,6 +80,9 @@
 		608B0D7B1F4F177C000CAB89 /* private.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = private.html; sourceTree = "<group>"; };
 		608B0D7C1F4F177C000CAB89 /* service.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = service.html; sourceTree = "<group>"; };
 		608B0D7D1F4F177C000CAB89 /* subscriptions.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = subscriptions.html; sourceTree = "<group>"; };
+		60B5D1A6215A9C1C0004D517 /* AppDetailIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppDetailIcon.png; sourceTree = "<group>"; };
+		60B5D1A8215AADBE0004D517 /* green_check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green_check.png; sourceTree = "<group>"; };
+		60B5D1A9215AADBE0004D517 /* green_check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "green_check@2x.png"; sourceTree = "<group>"; };
 		60F37BFF1F6D835600ED2FA7 /* tutor1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutor1.png; sourceTree = "<group>"; };
 		60F37C001F6D835600ED2FA7 /* tutor2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutor2.png; sourceTree = "<group>"; };
 		60F37C011F6D835600ED2FA7 /* tutor3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutor3.png; sourceTree = "<group>"; };
@@ -205,6 +211,9 @@
 		608B0D771F4F177C000CAB89 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				60B5D1A8215AADBE0004D517 /* green_check.png */,
+				60B5D1A9215AADBE0004D517 /* green_check@2x.png */,
+				60B5D1A6215A9C1C0004D517 /* AppDetailIcon.png */,
 				60F37C0B1F6E3DAF00ED2FA7 /* helpSB.png */,
 				60F37C091F6DB55A00ED2FA7 /* popular_icon.png */,
 				60F37C071F6D9CEE00ED2FA7 /* bgSB.jpg */,
@@ -338,13 +347,16 @@
 				71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */,
 				60F37C031F6D835600ED2FA7 /* tutor1.png in Resources */,
 				608B0D7E1F4F177C000CAB89 /* .gitkeep in Resources */,
+				60B5D1AB215AADBF0004D517 /* green_check@2x.png in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				60F37C081F6D9CEE00ED2FA7 /* bgSB.jpg in Resources */,
+				60B5D1A7215A9C1C0004D517 /* AppDetailIcon.png in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
 				60F37C051F6D835600ED2FA7 /* tutor3.png in Resources */,
 				60F37C0C1F6E3DAF00ED2FA7 /* helpSB.png in Resources */,
 				608B0D7F1F4F177C000CAB89 /* iap-close.png in Resources */,
 				60F37C0A1F6DB55A00ED2FA7 /* popular_icon.png in Resources */,
+				60B5D1AA215AADBF0004D517 /* green_check.png in Resources */,
 				608B0D821F4F177C000CAB89 /* service.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

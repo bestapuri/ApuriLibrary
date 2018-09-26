@@ -19,6 +19,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    [[BuyTool sharedInstance] initShop];
 }
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -28,6 +29,9 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (IBAction)btnTestClicked:(id)sender {
+    [[BuyTool sharedInstance] showActiveSB2:self];
 }
 
 @end

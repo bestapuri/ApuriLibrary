@@ -20,6 +20,8 @@
 
 - (BOOL) hasTimeRest;
 
+- (void)setLifeTime:(BOOL)full;
+
 - (NSString *) getTimeRest;
 
 - (NSString *) getTimeDisplay: (NSInteger) restMinute;

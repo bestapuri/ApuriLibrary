@@ -57,6 +57,38 @@ static BuyTool *instance = nil;
         [[[UIApplication sharedApplication].delegate window] setRootViewController:sbCtrl];
     }
 }
+- (void)showActiveSB2:(UIViewController*)ctrl
+{
+    self.successViewCtrl = ctrl;
+    SubscriptionCtrl* sbCtrl = [[SubscriptionCtrl alloc] init];
+    sbCtrl.successCtrl = ctrl;
+    self.subCtrl = sbCtrl;
+    self.subCtrl.screenType = HALFSCREEN;
+    [UIView transitionWithView:ctrl.view duration:0.5
+options:UIViewAnimationOptionTransitionCrossDissolve //change to whatever animation you like
+                    animations:^ {
+                        [ctrl.view addSubview:_subCtrl.view];
+                        [ctrl addChildViewController:_subCtrl];
+                    }
+                    completion:nil];
+    
+}
+- (void)showInternalWebView:(UIViewController*)ctrl url:(NSString*)url title:(NSString*)title
+{
+    self.successViewCtrl = ctrl;
+    SubscriptionCtrl* sbCtrl = [[SubscriptionCtrl alloc] initWithURL:url title:title];
+    sbCtrl.successCtrl = ctrl;
+    self.subCtrl = sbCtrl;
+    self.subCtrl.screenType = WEBSCREEN;
+    [UIView transitionWithView:ctrl.view duration:0.5
+                       options:UIViewAnimationOptionTransitionCrossDissolve //change to whatever animation you like
+                    animations:^ {
+                        [ctrl.view addSubview:_subCtrl.view];
+                        [ctrl addChildViewController:_subCtrl];
+                    }
+                    completion:nil];
+    
+}
 - (void)stopShop
 {
     [[SKPaymentQueue defaultQueue] removeTransactionObserver:self];
@@ -129,6 +161,8 @@ static BuyTool *instance = nil;
         
         @try {
             data.amountDisplay = [NSString stringWithFormat:@"%@ %@", [product.priceLocale objectForKey:NSLocaleCurrencySymbol], product.price];
+            data.btnText = product.localizedTitle;
+            NSLog(@"skProduct price=%@",data.amountDisplay);
         } @catch (NSException *exception) {
             
         } @finally {
@@ -186,7 +220,30 @@ static BuyTool *instance = nil;
     }
     return _products;
 }
-
+- (NSArray<SubscriptionData*>*)getSubsProducts
+{
+    NSMutableArray* list = [NSMutableArray arrayWithCapacity:0];
+    for(SubscriptionData*data in _products)
+    {
+        if(![data.productIdentifier containsString:@".full"])
+        {
+            [list addObject:data];
+        }
+    }
+    return list;
+}
+- (NSArray<SubscriptionData*>*)getNonConsProducts
+{
+    NSMutableArray* list = [NSMutableArray arrayWithCapacity:0];
+    for(SubscriptionData*data in _products)
+    {
+        if([data.productIdentifier containsString:@".full"])
+        {
+            [list addObject:data];
+        }
+    }
+    return list;
+}
 - (SubscriptionData *) getBuyDataWithProductIdentifier: (NSString *)productIdentifier{
     NSMutableArray <SubscriptionData *> *products = [self getProducts];
     for (SubscriptionData *data in products) {
@@ -236,9 +293,11 @@ static BuyTool *instance = nil;
             case SKPaymentTransactionStateFailed:
             {
                 [queue finishTransaction:tran];
+                NSLog(@"Purchase error = %@",tran.error.description);
                 [MBProgressHUD hideHUDForView:_controller.view animated:YES];
                 NSLog(@"purchased failed");
-                [AlertTool showGoitTip:_controller title:@"Purchase error. Please try again or check your network." aftrt:nil];
+                if(tran.error.code!=2)
+                    [AlertTool showGoitTip:_controller title:@"Purchase error. Please try again or check your network." aftrt:nil];
                 break;
             }
             default:
@@ -358,8 +417,23 @@ static BuyTool *instance = nil;
     for (int i = 0; i < receipts.count; i++) {
         NSDictionary *receipt = receipts[i];
         NSString *strData = receipt[@"expires_date"];
-        NSDate *date = [formatter dateFromString:strData];
-        [expiresDates addObject:date];
+        if(strData.length>0)
+        {
+            NSDate *date = [formatter dateFromString:strData];
+            [expiresDates addObject:date];
+        }
+        else
+        {
+            NSString* product_id = receipt[@"product_id"];
+            if([product_id containsString:@".full"])
+            {
+                [[UserData sharedInstance] setLifeTime:YES];
+            }
+            else
+            {
+                NSLog(@"receipt error = %@",receipt);
+            }
+        }
     }
     
     NSArray *resultDates = [expiresDates sortedArrayUsingComparator:^NSComparisonResult(NSDate *date1, NSDate *date2) {

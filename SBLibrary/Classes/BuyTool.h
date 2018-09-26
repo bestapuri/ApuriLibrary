@@ -22,6 +22,10 @@ typedef void(^AfterVerify)(NSInteger status);
 
 - (void)activeSB:(UIViewController*)ctrl;
 
+- (void)showActiveSB2:(UIViewController*)ctrl;
+
+- (void)showInternalWebView:(UIViewController*)ctrl url:(NSString*)url title:(NSString*)title;
+
 - (void)initShop;
 
 - (void)stopShop;
@@ -37,6 +41,10 @@ typedef void(^AfterVerify)(NSInteger status);
 - (void)restore: (UIViewController *) controller;
 
 - (NSMutableArray <SubscriptionData *> *) getProducts;
+
+- (NSArray<SubscriptionData*>*)getSubsProducts;
+
+- (NSArray<SubscriptionData*>*)getNonConsProducts;
 
 - (BOOL) isLoadingProducts;
 

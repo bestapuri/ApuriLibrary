@@ -12,7 +12,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [[BuyTool sharedInstance] activeSB:self.window.rootViewController];
+//    [[BuyTool sharedInstance] activeSB:self.window.rootViewController];
     // Override point for customization after application launch.
     return YES;
 }

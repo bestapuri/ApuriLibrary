@@ -103,9 +103,15 @@ static UserData *instance = nil;
 }
 
 - (BOOL) isVip{
+    BOOL isFullLifeTime = [[NSUserDefaults standardUserDefaults] boolForKey:@"fullLifeTime"];
+    if(isFullLifeTime)return YES;
     return [self hasTimeRest];
 }
-
+- (void)setLifeTime:(BOOL)full
+{
+    [[NSUserDefaults standardUserDefaults] setBool:full forKey:@"fullLifeTime"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
 - (void) tried{
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:Connect_T];
     [[NSUserDefaults standardUserDefaults] synchronize];

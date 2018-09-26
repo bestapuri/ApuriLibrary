@@ -14,6 +14,8 @@
 	</array>
 	<key>appName</key>
 	<string>Web Recorder</string>
+	<key>subscriptionName</key>
+	<string>Pro Version Subscriptions</string>
 	<key>appUnlock</key>
 	<string>Access unlimited features and record your video games</string>
 	<key>privacyText</key>
@@ -24,8 +26,17 @@
         You can manage and cancel your subscription in your iTunes Account Settings at any time.</string>
 	<key>IAPIds</key>
 	<array>
-		<string>1</string>
 		<string>12</string>
+		<string>3</string>
+		<string>1</string>
+		<string>0</string>
+		<string>full</string>
+	</array>
+	<key>appFeatures</key>
+	<array>
+		<string>Unlimited Downloading</string>
+		<string>Unlimited Sharing</string>
+		<string>Remove ads</string>
 	</array>
 </dict>
 </plist>
