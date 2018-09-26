@@ -24,9 +24,8 @@
     NSMutableArray* arrBtnBuy;
     UIView* _mainView;
     CGFloat _screenHeight;
-    NSString* _webURL;
-    NSString* _webTitle;
     UIView* _fullLifeTimeView;
+    UIView* _webView;
 }
 @property (nonatomic, strong) IFTTTAnimator *animator;
 @end
@@ -473,6 +472,19 @@
     [_fullLifeTimeView removeFromSuperview];
     [self removeFromParentViewController];
     [self.view removeFromSuperview];
+}
+- (void)btnCloseWebClicked:(id)sender
+{
+    if(self.screenType == WEBSCREEN)
+    {
+        [_mainView removeFromSuperview];
+        [self.view removeFromSuperview];
+        [self removeFromParentViewController];
+    }
+    else
+    {
+        [_webView removeFromSuperview];
+    }
 }
 - (void)btnCloseSubClicked:(id)sender
 {
@@ -923,7 +935,7 @@
     [btnClose setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     btnClose.backgroundColor = [UIColor redColor];
     btnClose.layer.cornerRadius = 5;
-    [btnClose addTarget:mainView action:@selector(removeFromSuperview) forControlEvents:UIControlEventTouchUpInside];
+    [btnClose addTarget:self action:@selector(btnCloseWebClicked:) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:btnClose];
     [btnClose mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view.mas_centerX);
@@ -962,23 +974,7 @@
         NSURL *htmlUrl = [NSURL fileURLWithPath:htmlPath];
         [webView loadRequest:[NSURLRequest requestWithURL:htmlUrl]];
     }
-    
-//
-//
-//    UIImageView * imgBg = [[UIImageView alloc] init];
-//    //    imgAppIcon.image = [UIImage imageNamed:@"AppDetailIcon"];
-//    imgBg.backgroundColor = [UIColor whiteColor];
-//    imgBg.layer.cornerRadius = 10;
-//    imgBg.layer.borderColor = [UIColor redColor].CGColor;
-//    imgBg.layer.borderWidth = 1;
-//    [view addSubview:imgBg];
-//    [imgBg mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.equalTo(lblTitleScreen.mas_top).offset(-10);
-//        make.bottom.equalTo(view.mas_bottom).offset(0);
-//        make.left.equalTo(view.mas_left).offset(3);
-//        make.right.equalTo(view.mas_right).offset(-3);
-//    }];
-//    [view sendSubviewToBack:imgBg];
+    _webView = mainView;
     
 }
 - (void)updatePrice

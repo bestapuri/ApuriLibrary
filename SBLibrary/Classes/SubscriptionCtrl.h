@@ -14,5 +14,6 @@ typedef enum {
 @interface SubscriptionCtrl : UIViewController
 @property(nonatomic,strong)UIViewController* successCtrl;
 @property(nonatomic,assign) SCREEN_TYPE screenType;
-- (id)initWithURL:(NSString*)url title:(NSString*)title;
+@property(nonatomic,strong) NSString* webURL;
+@property(nonatomic,strong) NSString* webTitle;
 @end
