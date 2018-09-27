@@ -27,7 +27,7 @@
 
 @property (assign, nonatomic) BOOL isLoadingProducts;
 
-@property (strong, nonatomic) UIViewController* successViewCtrl;
+@property (weak, nonatomic) UIViewController* successViewCtrl;
 
 @property (strong, nonatomic) SubscriptionCtrl* subCtrl;
 
@@ -82,21 +82,21 @@ options:UIViewAnimationOptionTransitionCrossDissolve //change to whatever animat
 - (void)showInternalWebView:(UIViewController*)ctrl url:(NSString*)url title:(NSString*)title
 {
     self.successViewCtrl = ctrl;
-    if(!self.subCtrl)
+    if(!self.subCtrlWeb)
     {
         SubscriptionCtrl* sbCtrl = [[SubscriptionCtrl alloc] init];
         sbCtrl.successCtrl = ctrl;
-        self.subCtrl = sbCtrl;
+        self.subCtrlWeb = sbCtrl;
         
     }
-    self.subCtrl.webURL = url;
-    self.subCtrl.webTitle = title;
-    self.subCtrl.screenType = WEBSCREEN;
+    self.subCtrlWeb.webURL = url;
+    self.subCtrlWeb.webTitle = title;
+    self.subCtrlWeb.screenType = WEBSCREEN;
     [UIView transitionWithView:ctrl.view duration:0.5
                        options:UIViewAnimationOptionTransitionCrossDissolve //change to whatever animation you like
                     animations:^ {
-                        [ctrl.view addSubview:self.subCtrl.view];
-                        [ctrl addChildViewController:self.subCtrl];
+                        [ctrl.view addSubview:self.subCtrlWeb.view];
+                        [ctrl addChildViewController:self.subCtrlWeb];
                     }
                     completion:nil];
     
