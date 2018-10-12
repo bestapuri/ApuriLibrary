@@ -56,7 +56,8 @@
     }];
 }
 - (IBAction)btn4Clicked:(id)sender {
-    [[BuyTool sharedInstance] restore:self];
+//    [[BuyTool sharedInstance] restore:self];
+    [[BuyTool sharedInstance] activeSB:self];
 }
 
 @end

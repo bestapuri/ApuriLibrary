@@ -452,6 +452,7 @@
         make.height.equalTo(@(70*multiple));
     }];
     
+    /*
     UIButton * btnSkip = [[UIButton alloc] init];
     [btnSkip setTitle:@"Remind me later" forState:UIControlStateNormal];
     [btnSkip setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
@@ -464,7 +465,7 @@
         make.width.equalTo(@(150*multiple));
         make.height.equalTo(@(70*multiple));
     }];
-    
+    */
     return view;
 }
 - (void)btnCloseClicked:(id)sender
@@ -968,6 +969,7 @@
     
     UIWebView * webView = [[UIWebView alloc] init];
     [view addSubview:webView];
+    webView.delegate = self;
     [webView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(lblTitleScreen.mas_bottom).offset(5);
         make.bottom.equalTo(btnClose.mas_top).offset(-5);
@@ -995,7 +997,7 @@
         UIButton* button = arrBtnBuy[i];
         [self setupButtonPrice:button data:data];
         i++;
-        
+        if(i>=arrBtnBuy.count)break;
     }
 }
 - (void)setupButtonPrice:(UIButton*)button data:(SubscriptionData*)data
@@ -1041,17 +1043,19 @@
 }
 - (void)privacyAction:(id)sender
 {
-    WebController *webController = [[WebController alloc] init];
-    webController.url = @"private";
-    webController.titleKey = @"Privacy Policy";
-    [[[UIApplication sharedApplication].delegate window].rootViewController presentViewController:webController animated:NO completion:nil];
+//    WebController *webController = [[WebController alloc] init];
+//    webController.url = @"private";
+//    webController.titleKey = @"Privacy Policy";
+//    [[[UIApplication sharedApplication].delegate window].rootViewController presentViewController:webController animated:NO completion:nil];
+    [self showInternalWebView:@"private" title:@"Privacy Policy"];
 }
 - (void)tosAction:(id)sender
 {
-    WebController *webController = [[WebController alloc] init];
-    webController.url = @"subscriptions";
-    webController.titleKey = @"About Subscriptions";
-    [[[UIApplication sharedApplication].delegate window].rootViewController presentViewController:webController animated:NO completion:nil];
+//    WebController *webController = [[WebController alloc] init];
+//    webController.url = @"subscriptions";
+//    webController.titleKey = @"About Subscriptions";
+//    [[[UIApplication sharedApplication].delegate window].rootViewController presentViewController:webController animated:NO completion:nil];
+    [self showInternalWebView:@"subscriptions" title:@"In-App Purchase"];
 }
 - (void)closeAction:(id)sender
 {
@@ -1127,5 +1131,15 @@
         }];
 
     }
+}
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    NSLog(@"url=%@",request.URL.absoluteString);
+    if([request.URL.absoluteString containsString:@"restorePurchase"])
+    {
+        [[BuyTool sharedInstance] restore:self ];
+        return NO;
+    }
+    return YES;
 }
 @end
