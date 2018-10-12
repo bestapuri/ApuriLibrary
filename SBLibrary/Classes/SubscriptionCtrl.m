@@ -585,7 +585,7 @@
     if(index<[[BuyTool sharedInstance] getSubsProducts].count)
     {
         SubscriptionData*data = [[BuyTool sharedInstance] getSubsProducts][index];
-        if(![data.amountDisplay isEqualToString:@"(null) (null)"])
+        if(![data.amountDisplay isEqualToString:@""])
         {
             [view addSubview:buyBtn];
             buyBtn.tag=index;
