@@ -471,7 +471,7 @@ options:UIViewAnimationOptionTransitionCrossDissolve //change to whatever animat
 - (void)paymentQueue:(SKPaymentQueue *)queue restoreCompletedTransactionsFailedWithError:(NSError *)error
 {
     [MBProgressHUD hideHUDForView:_controller.view animated:YES];
-    [AlertTool showGoitTip:_controller title:@"Restore failed." aftrt:nil];
+//    [AlertTool showGoitTip:_controller title:@"Restore failed." aftrt:nil];
 }
 
 - (void) showTransactionError{
