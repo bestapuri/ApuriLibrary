@@ -41,5 +41,5 @@ s.dependency 'AFNetworking'
 s.dependency 'Masonry'
 s.dependency 'MBProgressHUD'
 s.dependency 'JazzHands'
-s.dependency 'CHIPageControl'
+s.dependency 'CHIPageControl', '0.1.3'
 end
