@@ -46,7 +46,7 @@ static BuyTool *instance = nil;
 - (void)activeSB:(UIViewController*)ctrl
 {
     self.successViewCtrl = ctrl;
-    [self initShop];
+//    [self initShop];
     if ([[UserData sharedInstance] isVip])
     {
         [[[UIApplication sharedApplication].delegate window] setRootViewController:ctrl];
@@ -59,47 +59,35 @@ static BuyTool *instance = nil;
         [[[UIApplication sharedApplication].delegate window] setRootViewController:sbCtrl];
     }
 }
-- (void)showActiveSB2:(UIViewController*)ctrl
+- (UIViewController*)showActiveSB2:(UIViewController*)ctrl completion:(void (^)(void))completion;
 {
-    self.successViewCtrl = ctrl;
-    if(!self.subCtrl)
-    {
-        SubscriptionCtrl* sbCtrl = [[SubscriptionCtrl alloc] init];
-        sbCtrl.successCtrl = ctrl;
-        self.subCtrl = sbCtrl;
-        
-    }
-    self.subCtrl.screenType = HALFSCREEN;
+    SubscriptionCtrl* sbCtrl = [[SubscriptionCtrl alloc] init];
+    sbCtrl.screenType = HALFSCREEN;
+    sbCtrl.blockComplete = completion;
     [UIView transitionWithView:ctrl.view duration:0.5
 options:UIViewAnimationOptionTransitionCrossDissolve //change to whatever animation you like
                     animations:^ {
-                        [ctrl.view addSubview:_subCtrl.view];
-                        [ctrl addChildViewController:_subCtrl];
+                        [ctrl.view addSubview:sbCtrl.view];
+                        [ctrl addChildViewController:sbCtrl];
                     }
                     completion:nil];
-    
+    return sbCtrl;
 }
-- (void)showInternalWebView:(UIViewController*)ctrl url:(NSString*)url title:(NSString*)title
+- (UIViewController*)showInternalWebView:(UIViewController*)ctrl url:(NSString*)url title:(NSString*)title completion:(void (^)(void))completion;
 {
-    self.successViewCtrl = ctrl;
-    if(!self.subCtrlWeb)
-    {
-        SubscriptionCtrl* sbCtrl = [[SubscriptionCtrl alloc] init];
-        sbCtrl.successCtrl = ctrl;
-        self.subCtrlWeb = sbCtrl;
-        
-    }
-    self.subCtrlWeb.webURL = url;
-    self.subCtrlWeb.webTitle = title;
-    self.subCtrlWeb.screenType = WEBSCREEN;
+    SubscriptionCtrl* sbCtrl = [[SubscriptionCtrl alloc] init];
+    sbCtrl.webURL = url;
+    sbCtrl.webTitle = title;
+    sbCtrl.screenType = WEBSCREEN;
+    sbCtrl.blockComplete = completion;
     [UIView transitionWithView:ctrl.view duration:0.5
                        options:UIViewAnimationOptionTransitionCrossDissolve //change to whatever animation you like
                     animations:^ {
-                        [ctrl.view addSubview:self.subCtrlWeb.view];
-                        [ctrl addChildViewController:self.subCtrlWeb];
+                        [ctrl.view addSubview:sbCtrl.view];
+                        [ctrl addChildViewController:sbCtrl];
                     }
                     completion:nil];
-    
+    return sbCtrl;
 }
 - (void)stopShop
 {

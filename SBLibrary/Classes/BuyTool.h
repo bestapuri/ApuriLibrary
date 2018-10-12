@@ -22,9 +22,9 @@ typedef void(^AfterVerify)(NSInteger status);
 
 - (void)activeSB:(UIViewController*)ctrl;
 
-- (void)showActiveSB2:(UIViewController*)ctrl;
+- (UIViewController*)showActiveSB2:(UIViewController*)ctrl completion:(void (^)(void))completion;
 
-- (void)showInternalWebView:(UIViewController*)ctrl url:(NSString*)url title:(NSString*)title;
+- (UIViewController*)showInternalWebView:(UIViewController*)ctrl url:(NSString*)url title:(NSString*)title completion:(void (^)(void))completion;
 
 - (void)initShop;
 

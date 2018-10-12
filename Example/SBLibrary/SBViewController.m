@@ -9,6 +9,7 @@
 #import "SBViewController.h"
 #import <SBLibraryV2/BuyTool.h>
 #import <SBLibraryV2/UserData.h>
+#import "SBAppDelegate.h"
 @interface SBViewController ()
 
 @end
@@ -31,7 +32,31 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)btnTestClicked:(id)sender {
-    [[BuyTool sharedInstance] showActiveSB2:self];
+    UIViewController* ctrl = ((SBAppDelegate*)([UIApplication sharedApplication].delegate)).window.rootViewController;
+    __block UIViewController* returnCtrl = [[BuyTool sharedInstance] showActiveSB2:ctrl completion:^{
+        [returnCtrl removeFromParentViewController];
+        [returnCtrl.view removeFromSuperview];
+        returnCtrl = nil;
+    }];
+}
+- (IBAction)btn2Clicked:(id)sender {
+    UIViewController* ctrl = ((SBAppDelegate*)([UIApplication sharedApplication].delegate)).window.rootViewController;
+    __block UIViewController* returnCtrl = [[BuyTool sharedInstance] showInternalWebView:ctrl url:@"subscriptions" title:@"btn2" completion:^{
+        [returnCtrl removeFromParentViewController];
+        [returnCtrl.view removeFromSuperview];
+        returnCtrl = nil;
+    }];
+}
+- (IBAction)btn3Clicked:(id)sender {
+    UIViewController* ctrl = ((SBAppDelegate*)([UIApplication sharedApplication].delegate)).window.rootViewController;
+    __block UIViewController* returnCtrl = [[BuyTool sharedInstance] showInternalWebView:ctrl url:@"private" title:@"btn3" completion:^{
+        [returnCtrl removeFromParentViewController];
+        [returnCtrl.view removeFromSuperview];
+        returnCtrl = nil;
+    }];
+}
+- (IBAction)btn4Clicked:(id)sender {
+    [[BuyTool sharedInstance] restore:self];
 }
 
 @end

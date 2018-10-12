@@ -470,16 +470,24 @@
 - (void)btnCloseClicked:(id)sender
 {
     [_fullLifeTimeView removeFromSuperview];
-    [self removeFromParentViewController];
-    [self.view removeFromSuperview];
+    if(_blockComplete)
+    {
+        _blockComplete();
+    }
+//    [self removeFromParentViewController];
+//    [self.view removeFromSuperview];
 }
 - (void)btnCloseWebClicked:(id)sender
 {
     if(self.screenType == WEBSCREEN)
     {
         [_mainView removeFromSuperview];
-        [self.view removeFromSuperview];
-        [self removeFromParentViewController];
+        if(_blockComplete)
+        {
+            _blockComplete();
+        }
+//        [self.view removeFromSuperview];
+//        [self removeFromParentViewController];
     }
     else
     {

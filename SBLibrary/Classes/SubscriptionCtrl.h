@@ -16,4 +16,5 @@ typedef enum {
 @property(nonatomic,assign) SCREEN_TYPE screenType;
 @property(nonatomic,strong) NSString* webURL;
 @property(nonatomic,strong) NSString* webTitle;
+@property(nonatomic,copy) dispatch_block_t blockComplete;
 @end
