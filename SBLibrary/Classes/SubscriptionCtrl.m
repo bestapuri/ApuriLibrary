@@ -133,6 +133,7 @@
     }
     else
     {
+        self.view.backgroundColor = [UIColor whiteColor];
         scroll = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, screen.width, _screenHeight)];
         scroll.backgroundColor=[UIColor clearColor];
         scroll.delegate=self;
