@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SBLibraryV2'
-  s.version          = '0.3'
+  s.version          = '0.3.1'
   s.summary          = 'A short description of SBLibraryV2.'
 
 # This description is used to generate tags and improve search results.
@@ -35,6 +35,7 @@ s.source           = { :git => 'https://github.com/GameStar4Kid/SBLibraryV2.git'
 s.resource_bundles = {
     'SBLibraryV2' => ['SBLibrary/Assets/*.*']
 }
+s.swift_versions = ['4.0', '4.2']
 #s.public_header_files = 'Pod/Classes/**/*.h'
 s.frameworks = 'UIKit'
 s.dependency 'AFNetworking'

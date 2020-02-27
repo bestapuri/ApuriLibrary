@@ -149,28 +149,31 @@ options:UIViewAnimationOptionTransitionCrossDissolve //change to whatever animat
 
 - (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response
 {
-    [MBProgressHUD hideHUDForView:_controller.view animated:YES];
-    
-    _isLoadingProducts = NO;
-    
-    _skProducts = response.products;
-    
-    NSMutableArray <SubscriptionData *> *buyDatas = [self getProducts];
-    for (SubscriptionData *data in buyDatas) {
-        SKProduct *product = [self getSkProductWithProductIdentifier:data.productIdentifier];
-        
-        @try {
-            data.amountDisplay = [NSString stringWithFormat:@"%@ %@", [product.priceLocale objectForKey:NSLocaleCurrencySymbol], product.price];
-            data.btnText = product.localizedTitle;
-            NSLog(@"skProduct price=%@",data.amountDisplay);
-        } @catch (NSException *exception) {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [MBProgressHUD hideHUDForView:_controller.view animated:YES];
             
-        } @finally {
+            _isLoadingProducts = NO;
             
-        }
-    }
-//    NSLog(@"%@",buyDatas);
-    _after();
+            _skProducts = response.products;
+            
+            NSMutableArray <SubscriptionData *> *buyDatas = [self getProducts];
+            for (SubscriptionData *data in buyDatas) {
+                SKProduct *product = [self getSkProductWithProductIdentifier:data.productIdentifier];
+                
+                @try {
+                    data.amountDisplay = [NSString stringWithFormat:@"%@ %@", [product.priceLocale objectForKey:NSLocaleCurrencySymbol], product.price];
+                    data.btnText = product.localizedTitle;
+                    NSLog(@"skProduct price=%@",data.amountDisplay);
+                } @catch (NSException *exception) {
+                    
+                } @finally {
+                    
+                }
+            }
+        //    NSLog(@"%@",buyDatas);
+            _after();
+    });
+    
 }
 
 - (void)restore: (UIViewController *) controller
@@ -265,45 +268,47 @@ options:UIViewAnimationOptionTransitionCrossDissolve //change to whatever animat
 
 - (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transaction
 {
-    for(SKPaymentTransaction *tran in transaction)
-    {
-        switch (tran.transactionState)
+    dispatch_async(dispatch_get_main_queue(), ^{
+        for(SKPaymentTransaction *tran in transaction)
         {
-            case SKPaymentTransactionStatePurchased:
+            switch (tran.transactionState)
             {
-                [[UserData sharedInstance] tried];
-                [MBProgressHUD hideHUDForView:_controller.view animated:YES];
-                [queue finishTransaction:tran];
-                NSLog(@"purchased");
-                [[NSNotificationCenter defaultCenter] postNotificationName:FINISH_PURCHAED_RESTORED object:nil];
-                break;
+                case SKPaymentTransactionStatePurchased:
+                {
+                    [[UserData sharedInstance] tried];
+                    [MBProgressHUD hideHUDForView:_controller.view animated:YES];
+                    [queue finishTransaction:tran];
+                    NSLog(@"purchased");
+                    [[NSNotificationCenter defaultCenter] postNotificationName:FINISH_PURCHAED_RESTORED object:nil];
+                    break;
+                }
+                case SKPaymentTransactionStatePurchasing:
+                {
+                    NSLog(@"payment in queue");
+                    break;
+                }
+                case SKPaymentTransactionStateRestored:
+                {
+                    [queue finishTransaction:tran];
+                    NSLog(@"restored");
+                    [[NSNotificationCenter defaultCenter] postNotificationName:FINISH_PURCHAED_RESTORED object:nil];
+                    break;
+                }
+                case SKPaymentTransactionStateFailed:
+                {
+                    [queue finishTransaction:tran];
+                    NSLog(@"Purchase error = %@",tran.error.description);
+                    [MBProgressHUD hideHUDForView:_controller.view animated:YES];
+                    NSLog(@"purchased failed");
+                    if(tran.error.code!=2)
+                        [AlertTool showGoitTip:_controller title:@"Purchase error. Please try again or check your network." aftrt:nil];
+                    break;
+                }
+                default:
+                    break;
             }
-            case SKPaymentTransactionStatePurchasing:
-            {
-                NSLog(@"payment in queue");
-                break;
-            }
-            case SKPaymentTransactionStateRestored:
-            {
-                [queue finishTransaction:tran];
-                NSLog(@"restored");
-                [[NSNotificationCenter defaultCenter] postNotificationName:FINISH_PURCHAED_RESTORED object:nil];
-                break;
-            }
-            case SKPaymentTransactionStateFailed:
-            {
-                [queue finishTransaction:tran];
-                NSLog(@"Purchase error = %@",tran.error.description);
-                [MBProgressHUD hideHUDForView:_controller.view animated:YES];
-                NSLog(@"purchased failed");
-                if(tran.error.code!=2)
-                    [AlertTool showGoitTip:_controller title:@"Purchase error. Please try again or check your network." aftrt:nil];
-                break;
-            }
-            default:
-                break;
         }
-    }
+    });
 }
 
 - (void) refreshReceipt {
@@ -314,33 +319,39 @@ options:UIViewAnimationOptionTransitionCrossDissolve //change to whatever animat
 
 - (void)request:(SKRequest *)request didFailWithError:(NSError *)error
 {
-    if ([request isKindOfClass:[SKProductsRequest class]]) {
-        [MBProgressHUD hideHUDForView:_controller.view animated:YES];
-        _isLoadingProducts = NO;
-        [AlertTool showGoitTip:_controller title:NSLocalizedString(@"NetworkError", nil) aftrt:^{}];
-    }
-    else if([request isKindOfClass:[SKReceiptRefreshRequest class]]){
-        [AlertTool showGoitTip:_controller title:@"Subscription update failed. Please try again later." aftrt:^{
-            [self afterVerifyReceipt:-1];
-        }];
-    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if ([request isKindOfClass:[SKProductsRequest class]]) {
+            [MBProgressHUD hideHUDForView:_controller.view animated:YES];
+            _isLoadingProducts = NO;
+            [AlertTool showGoitTip:_controller title:NSLocalizedString(@"NetworkError", nil) aftrt:^{}];
+        }
+        else if([request isKindOfClass:[SKReceiptRefreshRequest class]]){
+            [AlertTool showGoitTip:_controller title:@"Subscription update failed. Please try again later." aftrt:^{
+                [self afterVerifyReceipt:-1];
+            }];
+        }
+    });
+    
 }
 
 - (void)requestDidFinish:(SKRequest *)request
 {
-    if ([request isKindOfClass:[SKProductsRequest class]]) {
-        [MBProgressHUD hideHUDForView:_controller.view animated:YES];
-        _isLoadingProducts = NO;
-        
-        if (_tryNow) {
-            _tryNow = NO;
-            SubscriptionData *data = [self getProducts][0];
-            [[BuyTool sharedInstance] buyInShop:data controller:_controller];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if ([request isKindOfClass:[SKProductsRequest class]]) {
+            [MBProgressHUD hideHUDForView:_controller.view animated:YES];
+            _isLoadingProducts = NO;
+            
+            if (_tryNow) {
+                _tryNow = NO;
+                SubscriptionData *data = [self getProducts][0];
+                [[BuyTool sharedInstance] buyInShop:data controller:_controller];
+            }
         }
-    }
-    else if([request isKindOfClass:[SKReceiptRefreshRequest class]]){
-        [self requestVerifyReceipt:Env_AppStore];
-    }
+        else if([request isKindOfClass:[SKReceiptRefreshRequest class]]){
+            [self requestVerifyReceipt:Env_AppStore];
+        }
+    });
+    
 }
 
 - (void) verifyReceipt {
@@ -372,34 +383,37 @@ options:UIViewAnimationOptionTransitionCrossDissolve //change to whatever animat
     [storeRequest setHTTPBody:requestData];
     
     [NSURLConnection sendAsynchronousRequest:storeRequest queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-        if (connectionError) {
-            [AlertTool showGoitTip:_controller title:@"Network connection failure" aftrt:^{
-                [self afterVerifyReceipt:-1];
-            }];
-        } else {
-            NSError *error;
-            NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
-            if (jsonResponse) {
-                switch ([jsonResponse[@"status"] integerValue]) {
-                    case 0:
-                        [self processReceipt:jsonResponse];
-                        break;
-                    case 21007:
-                        [self requestVerifyReceipt:Env_Sandbox];
-                         break;
-                    default:
-                        [AlertTool showGoitTip:_controller title:@"Subscription update failed. Please try again later." aftrt:^{
-                            [self afterVerifyReceipt:-1];
-                        }];
-                        break;
-                }
-            }
-            else{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (connectionError) {
                 [AlertTool showGoitTip:_controller title:@"Network connection failure" aftrt:^{
                     [self afterVerifyReceipt:-1];
                 }];
+            } else {
+                NSError *error;
+                NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+                if (jsonResponse) {
+                    switch ([jsonResponse[@"status"] integerValue]) {
+                        case 0:
+                            [self processReceipt:jsonResponse];
+                            break;
+                        case 21007:
+                            [self requestVerifyReceipt:Env_Sandbox];
+                             break;
+                        default:
+                            [AlertTool showGoitTip:_controller title:@"Subscription update failed. Please try again later." aftrt:^{
+                                [self afterVerifyReceipt:-1];
+                            }];
+                            break;
+                    }
+                }
+                else{
+                    [AlertTool showGoitTip:_controller title:@"Network connection failure" aftrt:^{
+                        [self afterVerifyReceipt:-1];
+                    }];
+                }
             }
-        }
+        });
+        
     }];
 
 }
@@ -461,16 +475,22 @@ options:UIViewAnimationOptionTransitionCrossDissolve //change to whatever animat
 - (void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue
 {
     [self verifyReceipt:_controller after:^(NSInteger status) {
-        [MBProgressHUD hideHUDForView:_controller.view animated:YES];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [MBProgressHUD hideHUDForView:_controller.view animated:YES];
+                    
+            //        [AlertTool showGoitTip:_controller title:@"Restore success." aftrt:nil];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:FINISH_PURCHAED_RESTORED object:nil];
+        });
         
-//        [AlertTool showGoitTip:_controller title:@"Restore success." aftrt:nil];
-        [[NSNotificationCenter defaultCenter] postNotificationName:FINISH_PURCHAED_RESTORED object:nil];
     }];
 }
 
 - (void)paymentQueue:(SKPaymentQueue *)queue restoreCompletedTransactionsFailedWithError:(NSError *)error
 {
-    [MBProgressHUD hideHUDForView:_controller.view animated:YES];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [MBProgressHUD hideHUDForView:_controller.view animated:YES];
+    });
+    
 //    [AlertTool showGoitTip:_controller title:@"Restore failed." aftrt:nil];
 }
 

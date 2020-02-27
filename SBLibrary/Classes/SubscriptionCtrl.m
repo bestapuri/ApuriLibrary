@@ -122,9 +122,30 @@
     UIView* sbView;
     if(self.screenType==HALFSCREEN)
     {
-        sbView = [self setupSBViewHalfScreen];
-        sbView.frame = _mainView.frame;
-        [_mainView addSubview:sbView];
+        NSArray* numIAPIds = [BuyTool getCongfigInFile:@"IAPIds"];
+        if(numIAPIds.count>1)
+        {
+            sbView = [self setupSBViewHalfScreen];
+            sbView.frame = _mainView.frame;
+            [_mainView addSubview:sbView];
+        }
+        else 
+        {
+            //support non-con only
+            if([BuyTool sharedInstance].getNonConsProducts.firstObject)
+            {
+                UIView *fullPurchaseView = [[UIView alloc] init];
+                [self.view addSubview:fullPurchaseView];
+                [fullPurchaseView mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.centerX.equalTo(self.view.mas_centerX);
+                    make.centerY.equalTo(self.view.mas_centerY);
+                    make.height.equalTo(self.view.mas_height);
+                    make.width.equalTo(self.view.mas_width);
+                }];
+                [self setupSBViewLifeTime:fullPurchaseView];
+                _fullLifeTimeView = fullPurchaseView;
+            }
+        }
         
     }
     else if(self.screenType == WEBSCREEN)
@@ -879,7 +900,15 @@
     
     UILabel* lblTitleScreen = [[UILabel alloc] init];
     lblTitleScreen.textAlignment = NSTextAlignmentCenter;
-    lblTitleScreen.text = @"Don't want to use Subscriptions? Try with One-Off Purchase";
+    NSArray* numIAPIds = [BuyTool getCongfigInFile:@"IAPIds"];
+    if(numIAPIds.count>1)
+    {
+        lblTitleScreen.text = @"Don't want to use Subscriptions? Try with One-Off Purchase";
+    }
+    else
+    {
+        lblTitleScreen.text = @"Try with One-Off Purchase! Get Premium Now";
+    }
     lblTitleScreen.textColor = [UIColor blackColor];
     lblTitleScreen.font = [UIFont systemFontOfSize:17];
     lblTitleScreen.numberOfLines = 0;

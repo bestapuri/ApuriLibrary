@@ -21,6 +21,11 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     [[BuyTool sharedInstance] initShop];
+    [[BuyTool sharedInstance] queryAllProducts:self after:^{
+        //do nothing
+    }];
+
+    
 }
 - (void)viewWillAppear:(BOOL)animated
 {
