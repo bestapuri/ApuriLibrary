@@ -222,8 +222,8 @@
 }
 - (void)pageChanged {
     
-    int pageNumber = pageControl.currentPage;
-    
+    //int pageNumber = pageControl.currentPage;
+    int pageNumber = 1;
     CGRect frame = scroll.frame;
     frame.origin.x = frame.size.width*pageNumber;
     frame.origin.y=0;

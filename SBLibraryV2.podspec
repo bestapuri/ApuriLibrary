@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SBLibraryV2'
-  s.version          = '0.2'
+  s.version          = '0.3'
   s.summary          = 'A short description of SBLibraryV2.'
 
 # This description is used to generate tags and improve search results.
@@ -28,7 +28,7 @@ s.author           = { 'harryjury@gmail.com' => 'gamestar4kid@gmail.com' }
 s.source           = { :git => 'https://github.com/GameStar4Kid/SBLibraryV2.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '10.0'
 
   s.source_files = 'SBLibrary/Classes/**/*'
   
@@ -41,5 +41,5 @@ s.dependency 'AFNetworking'
 s.dependency 'Masonry'
 s.dependency 'MBProgressHUD'
 s.dependency 'JazzHands'
-s.dependency 'CHIPageControl', '0.1.3'
+s.dependency 'CHIPageControl'
 end
