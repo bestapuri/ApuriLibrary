@@ -64,6 +64,7 @@ static BuyTool *instance = nil;
     SubscriptionCtrl* sbCtrl = [[SubscriptionCtrl alloc] init];
     sbCtrl.screenType = HALFSCREEN;
     sbCtrl.blockComplete = completion;
+    self.subCtrl = sbCtrl;
     [UIView transitionWithView:ctrl.view duration:0.5
 options:UIViewAnimationOptionTransitionCrossDissolve //change to whatever animation you like
                     animations:^ {

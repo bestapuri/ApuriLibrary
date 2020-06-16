@@ -1091,7 +1091,8 @@
 - (void)closeAction:(id)sender
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"SUBSCRIPTION_CLOSE" object:nil];
-    [[[UIApplication sharedApplication].delegate window] setRootViewController:self.successCtrl];
+    if(self.successCtrl)
+        [[[UIApplication sharedApplication].delegate window] setRootViewController:self.successCtrl];
 }
 - (NSString*) getStringWithSubData:(SubscriptionData*)data
 {
@@ -1139,7 +1140,8 @@
 {
     if ([[UserData sharedInstance] isVip])
     {
-        [[[UIApplication sharedApplication].delegate window] setRootViewController:self.successCtrl];
+        if(self.successCtrl)
+            [[[UIApplication sharedApplication].delegate window] setRootViewController:self.successCtrl];
         [AlertTool showGoitTip:_successCtrl title:@"Thanks for purchasing." aftrt:nil];
         [self btnCloseClicked:nil];
     }
@@ -1148,7 +1150,8 @@
         [[BuyTool sharedInstance] verifyReceipt:self after:^(NSInteger status) {
             if (status == 0) {
                 if ([[UserData sharedInstance] isVip]){
-                    [[[UIApplication sharedApplication].delegate window] setRootViewController:self.successCtrl];
+                    if(self.successCtrl)
+                        [[[UIApplication sharedApplication].delegate window] setRootViewController:self.successCtrl];
                     [AlertTool showGoitTip:_successCtrl title:@"Thanks for purchasing." aftrt:nil];
                     [self btnCloseClicked:nil];
                 }
