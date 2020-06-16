@@ -9,9 +9,10 @@
 #import "WebController.h"
 #import "View+MASAdditions.h"
 #import "BuyTool.h"
-@interface WebController () <UIWebViewDelegate>
+@import WebKit;
+@interface WebController () <WKUIDelegate>
 
-@property (strong, nonatomic) IBOutlet UIWebView *webview;
+@property (strong, nonatomic) IBOutlet WKWebView *webview;
 
 @end
 
@@ -28,8 +29,8 @@
 
 - (void)initWebView
 {
-    _webview = [[UIWebView alloc] initWithFrame: self.view.frame];
-    _webview.delegate = self;
+    _webview = [[WKWebView alloc] initWithFrame: self.view.frame];
+    _webview.UIDelegate = self;
     
     [self.view addSubview:_webview];
     
@@ -70,14 +71,15 @@
     [self dismissViewControllerAnimated:YES completion:nil];
     [self.view removeFromSuperview];
 }
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
-{
-    NSLog(@"url=%@",request.URL.absoluteString);
-    if([request.URL.absoluteString containsString:@"restorePurchase"])
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
+
+    NSURLRequest *request = navigationAction.request;
+    NSString *url = [[request URL]absoluteString];
+    if([url containsString:@"restorePurchase"])
     {
         [[BuyTool sharedInstance] restore:self ];
-        return NO;
+        decisionHandler(WKNavigationActionPolicyCancel);
     }
-    return YES;
+    decisionHandler(WKNavigationActionPolicyAllow);
 }
 @end

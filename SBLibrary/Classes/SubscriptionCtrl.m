@@ -14,10 +14,11 @@
 #import "AlertTool.h"
 #import "IFTTTJazzHands.h"
 #import <QuartzCore/QuartzCore.h>
+@import WebKit;
 @import CHIPageControl;
 //#define NUM_PAGE 4
 #define isiPhone5  ([[UIScreen mainScreen] bounds].size.height == 568)?TRUE:FALSE
-@interface SubscriptionCtrl ()<UIScrollViewDelegate>{
+@interface SubscriptionCtrl ()<UIScrollViewDelegate,WKUIDelegate>{
     
     CHIPageControlAji *pageControl;
     UIScrollView *scroll;
@@ -997,9 +998,9 @@
         make.height.equalTo(@(40));
     }];
     
-    UIWebView * webView = [[UIWebView alloc] init];
+    WKWebView * webView = [[WKWebView alloc] init];
     [view addSubview:webView];
-    webView.delegate = self;
+    webView.UIDelegate = self;
     [webView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(lblTitleScreen.mas_bottom).offset(5);
         make.bottom.equalTo(btnClose.mas_top).offset(-5);
@@ -1162,14 +1163,16 @@
 
     }
 }
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
-{
-    NSLog(@"url=%@",request.URL.absoluteString);
-    if([request.URL.absoluteString containsString:@"restorePurchase"])
+
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
+
+    NSURLRequest *request = navigationAction.request;
+    NSString *url = [[request URL]absoluteString];
+    if([url containsString:@"restorePurchase"])
     {
         [[BuyTool sharedInstance] restore:self ];
-        return NO;
+        decisionHandler(WKNavigationActionPolicyCancel);
     }
-    return YES;
+    decisionHandler(WKNavigationActionPolicyAllow);
 }
 @end
