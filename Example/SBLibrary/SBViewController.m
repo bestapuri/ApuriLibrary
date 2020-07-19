@@ -66,16 +66,28 @@
 }
 - (IBAction)btn3Clicked:(id)sender {
     UIWindow* window = [[UIApplication sharedApplication].delegate window];
-    UIViewController* ctrl;
-    if(window)
-        ctrl = window.rootViewController;
-    else
-        ctrl = self;
-    __block UIViewController* returnCtrl = [[BuyTool sharedInstance] showInternalWebView:ctrl url:@"private" title:@"btn3" completion:^{
-        [returnCtrl removeFromParentViewController];
-        [returnCtrl.view removeFromSuperview];
-        returnCtrl = nil;
-    }];
+       UIViewController* ctrl;
+       if(window)
+           ctrl = window.rootViewController;
+       else
+           ctrl = self;
+       __block UIViewController* returnCtrl = [[BuyTool sharedInstance] showActiveSBTrial:ctrl completion:^{
+           [returnCtrl removeFromParentViewController];
+           [returnCtrl.view removeFromSuperview];
+           returnCtrl = nil;
+       }];
+//
+//    UIWindow* window = [[UIApplication sharedApplication].delegate window];
+//    UIViewController* ctrl;
+//    if(window)
+//        ctrl = window.rootViewController;
+//    else
+//        ctrl = self;
+//    __block UIViewController* returnCtrl = [[BuyTool sharedInstance] showInternalWebView:ctrl url:@"private" title:@"btn3" completion:^{
+//        [returnCtrl removeFromParentViewController];
+//        [returnCtrl.view removeFromSuperview];
+//        returnCtrl = nil;
+//    }];
 }
 - (IBAction)btn4Clicked:(id)sender {
     [[BuyTool sharedInstance] activeSB:self];

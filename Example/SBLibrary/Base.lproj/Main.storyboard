@@ -38,17 +38,17 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dOg-XB-ZUg">
-                                <rect key="frame" x="111" y="88" width="129" height="30"/>
+                                <rect key="frame" x="115" y="88" width="122" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Show subs privacy"/>
+                                <state key="normal" title="Show One Screen"/>
                                 <connections>
                                     <action selector="btn2Clicked:" destination="whP-gf-Uak" eventType="touchUpInside" id="HSJ-cw-8Xa"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KJS-Ih-eWK">
-                                <rect key="frame" x="107" y="136" width="137" height="30"/>
+                                <rect key="frame" x="98" y="136" width="155" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Show policy Privacy"/>
+                                <state key="normal" title="Show Half Screen Trial"/>
                                 <connections>
                                     <action selector="btn3Clicked:" destination="whP-gf-Uak" eventType="touchUpInside" id="GRP-OW-pNb"/>
                                 </connections>

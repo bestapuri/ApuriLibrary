@@ -9,7 +9,8 @@ typedef enum {
     FULLSCREEN = 1,
     HALFSCREEN                = 2,
     WEBSCREEN                = 3,
-    ONE_SREEN                = 4
+    ONE_SREEN                = 4,
+    HALFSCREEN_TRIAL                = 5
 } SCREEN_TYPE;
 #import <UIKit/UIKit.h>
 @interface SubscriptionCtrl : UIViewController

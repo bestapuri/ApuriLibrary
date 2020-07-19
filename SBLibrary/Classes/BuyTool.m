@@ -105,6 +105,23 @@ options:UIViewAnimationOptionTransitionCrossDissolve //change to whatever animat
                     completion:nil];
     return sbCtrl;
 }
+
+- (UIViewController*)showActiveSBTrial:(UIViewController*)ctrl completion:(void (^)(void))completion;
+{
+    SubscriptionCtrl* sbCtrl = [[SubscriptionCtrl alloc] init];
+    sbCtrl.screenType = HALFSCREEN_TRIAL;
+    sbCtrl.blockComplete = completion;
+    self.subCtrl = sbCtrl;
+    [UIView transitionWithView:ctrl.view duration:0.5
+options:UIViewAnimationOptionTransitionCrossDissolve //change to whatever animation you like
+                    animations:^ {
+                        [ctrl.view addSubview:sbCtrl.view];
+                        [ctrl addChildViewController:sbCtrl];
+                    }
+                    completion:nil];
+    return sbCtrl;
+}
+
 - (UIViewController*)showInternalWebView:(UIViewController*)ctrl url:(NSString*)url title:(NSString*)title completion:(void (^)(void))completion;
 {
     SubscriptionCtrl* sbCtrl = [[SubscriptionCtrl alloc] init];

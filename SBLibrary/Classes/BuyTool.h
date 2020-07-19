@@ -26,6 +26,8 @@ typedef void(^AfterVerify)(NSInteger status);
 
 - (UIViewController*)showActiveSB2:(UIViewController*)ctrl completion:(void (^)(void))completion;
 
+- (UIViewController*)showActiveSBTrial:(UIViewController*)ctrl completion:(void (^)(void))completion;
+
 - (UIViewController*)showInternalWebView:(UIViewController*)ctrl url:(NSString*)url title:(NSString*)title completion:(void (^)(void))completion;
 
 - (void)initShop;
