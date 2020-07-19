@@ -236,6 +236,23 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    if(_screenHeight==0)
+    {
+        CGSize screen = [UIScreen mainScreen].bounds.size;
+        CGFloat screenHeight = screen.height;
+        if (@available(iOS 11.0, *)) {
+            UIWindow *window = UIApplication.sharedApplication.keyWindow;
+            CGFloat topPadding = window.safeAreaInsets.top;
+            CGFloat bottomPadding = window.safeAreaInsets.bottom;
+            screenHeight = screen.height - topPadding - bottomPadding;
+            _screenHeight = screenHeight;
+        }
+        else
+        {
+            _screenHeight = screenHeight;
+        }
+        [self setUpPageView];
+    }
     [self updatePrice];
 }
 - (void)scrollViewDidScroll:(UIScrollView *)_scrollView{
