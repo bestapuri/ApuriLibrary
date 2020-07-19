@@ -47,16 +47,47 @@ static BuyTool *instance = nil;
 {
     self.successViewCtrl = ctrl;
 //    [self initShop];
+    UIWindow* window = [[UIApplication sharedApplication].delegate window];
     if ([[UserData sharedInstance] isVip])
     {
-        [[[UIApplication sharedApplication].delegate window] setRootViewController:ctrl];
+        if(window)
+            window.rootViewController = ctrl;
+        else
+            ctrl.view.window.rootViewController = ctrl;
     }
     else
     {
         SubscriptionCtrl* sbCtrl = [[SubscriptionCtrl alloc] init];
         sbCtrl.successCtrl = ctrl;
         self.subCtrl = sbCtrl;
-        [[[UIApplication sharedApplication].delegate window] setRootViewController:sbCtrl];
+        if(window)
+            window.rootViewController = sbCtrl;
+        else
+            ctrl.view.window.rootViewController = sbCtrl;
+    }
+}
+- (void)activeSB2:(UIViewController*)ctrl
+{
+    self.successViewCtrl = ctrl;
+//    [self initShop];
+    UIWindow* window = [[UIApplication sharedApplication].delegate window];
+    if ([[UserData sharedInstance] isVip])
+    {
+        if(window)
+            window.rootViewController = ctrl;
+        else
+            ctrl.view.window.rootViewController = ctrl;
+    }
+    else
+    {
+        SubscriptionCtrl* sbCtrl = [[SubscriptionCtrl alloc] init];
+        sbCtrl.successCtrl = ctrl;
+        sbCtrl.screenType = ONE_SREEN;
+        self.subCtrl = sbCtrl;
+        if(window)
+            window.rootViewController = sbCtrl;
+        else
+            ctrl.view.window.rootViewController = sbCtrl;
     }
 }
 - (UIViewController*)showActiveSB2:(UIViewController*)ctrl completion:(void (^)(void))completion;
@@ -541,13 +572,21 @@ options:UIViewAnimationOptionTransitionCrossDissolve //change to whatever animat
     if([UserData sharedInstance].isVip) return;
     if ([[BuyTool sharedInstance] getProductsCount] == 0 && ![[BuyTool sharedInstance] isLoadingProducts]) {
         [[BuyTool sharedInstance] queryAllProducts:controller after:^{
-            [[[UIApplication sharedApplication].delegate window] setRootViewController:self.subCtrl];
+            UIWindow* window = [[UIApplication sharedApplication].delegate window];
+            if(window)
+                window.rootViewController = self.subCtrl;
+            else
+                controller.view.window.rootViewController = self.subCtrl;
         }];
     }
     else
     {
         [[BuyTool sharedInstance] queryAllProducts:controller after:^{
-            [[[UIApplication sharedApplication].delegate window] setRootViewController:self.subCtrl];
+            UIWindow* window = [[UIApplication sharedApplication].delegate window];
+            if(window)
+                window.rootViewController = self.subCtrl;
+            else
+                controller.view.window.rootViewController = self.subCtrl;
         }];
     }
 }

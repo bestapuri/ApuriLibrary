@@ -153,6 +153,12 @@
     {
         [self showInternalWebView:_webURL title:_webTitle];
     }
+    else if(self.screenType == ONE_SREEN)
+    {
+        sbView = [self setupSBView2];
+        sbView.frame = _mainView.frame;
+        [_mainView addSubview:sbView];
+    }
     else
     {
         self.view.backgroundColor = [UIColor whiteColor];
@@ -330,6 +336,7 @@
     
     UILabel* title = [[UILabel alloc] init];
     title.text = [BuyTool getCongfigInFile:@"appName"];
+    title.textColor = [UIColor blackColor];
     title.textAlignment = NSTextAlignmentCenter;
     title.font = [UIFont boldSystemFontOfSize:30];
     [view addSubview:title];
@@ -345,6 +352,7 @@
     subTitle.numberOfLines=2;
     subTitle.font = [UIFont systemFontOfSize:13];
     subTitle.text = [BuyTool getCongfigInFile:@"appUnlock"];
+    subTitle.textColor = [UIColor blackColor];
     subTitle.textAlignment = NSTextAlignmentCenter;
     [view addSubview:subTitle];
     [subTitle mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -455,6 +463,7 @@
     privacyLbl.adjustsFontSizeToFitWidth = YES;
     privacyLbl.text = [BuyTool getCongfigInFile:@"privacyText"];
     privacyLbl.textAlignment = NSTextAlignmentCenter;
+    privacyLbl.textColor = [UIColor blackColor];
     [view addSubview:privacyLbl];
     [privacyLbl mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(lastBtn.mas_bottom).offset(15*multiple);
@@ -489,6 +498,189 @@
         make.height.equalTo(@(70*multiple));
     }];
     */
+    return view;
+}
+-(UIView*) setupSBView2{
+    arrBtnBuy = [NSMutableArray arrayWithCapacity:0];
+    CGSize screen = [UIScreen mainScreen].bounds.size;
+    CGFloat screenHeight = screen.height;
+    if(_screenHeight==0) _screenHeight=screenHeight;
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, screen.width, _screenHeight)];
+    CGFloat multiple = 1;
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        multiple = 1.3;
+    } else if(isiPhone5) {
+        multiple = 0.8;
+    } else
+    {
+        multiple = 0.8;
+    }
+    
+    UIView * center = [[UIView alloc] init];
+    [view addSubview:center];
+    [center mas_makeConstraints:^(MASConstraintMaker *make) {
+        //make.centerX.equalTo(self.view.mas_centerX);
+        make.centerY.equalTo(view.mas_centerY);
+        make.centerX.equalTo(view.mas_centerX);
+        make.width.equalTo(view.mas_height);
+        make.height.equalTo(@(1));
+    }];
+    view.backgroundColor = [UIColor whiteColor];
+    UIImageView * bg = [[UIImageView alloc] init];
+    bg.contentMode = UIViewContentModeScaleToFill;
+    bg.image = [UIImage imageNamed:@"bgSB.jpg"];
+    [view addSubview:bg];
+    [bg mas_makeConstraints:^(MASConstraintMaker *make) {
+        //make.centerX.equalTo(self.view.mas_centerX);
+        make.top.equalTo(@(0*multiple));
+        make.left.equalTo(@(0*multiple));
+        make.right.equalTo(@(0*multiple));
+        make.bottom.equalTo(view.mas_top).offset(250*multiple);;
+    }];
+    
+    //节点背景
+    
+    UILabel* title = [[UILabel alloc] init];
+    title.text = [BuyTool getCongfigInFile:@"appName"];
+    title.textColor = [UIColor blackColor];
+    title.textAlignment = NSTextAlignmentCenter;
+    title.font = [UIFont boldSystemFontOfSize:30];
+    [view addSubview:title];
+    [title mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(view.mas_centerX);
+//        make.top.equalTo(center.mas_bottom).offset(5*multiple);
+        make.top.equalTo(bg.mas_bottom).offset(5*multiple);
+        make.left.equalTo(view.mas_left);
+        make.right.equalTo(view.mas_right);
+        make.height.equalTo(@(40*multiple));
+    }];
+    
+    NSArray* numFeatures = [BuyTool getCongfigInFile:@"appFeatures"];
+    UIView* lastFeatureView = title;
+    int i = 0;
+    for(NSString* feature in numFeatures)
+    {
+        UIButton *scanBarCodeButton = [[UIButton alloc]init];
+        [scanBarCodeButton setImage:[UIImage imageNamed:@"green_check.png"] forState:UIControlStateNormal];
+        scanBarCodeButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
+        [scanBarCodeButton setTitle:feature forState:UIControlStateNormal];
+        [scanBarCodeButton.titleLabel setFont:[UIFont systemFontOfSize:17]];
+        [scanBarCodeButton setTitleColor:[UIColor colorWithRed:15.0/255 green:127.0/255 blue:18.0/255 alpha:1] forState:UIControlStateNormal];
+        scanBarCodeButton.titleEdgeInsets = UIEdgeInsetsMake(0.0f, 12.0f, 0.0f, 0.0f);
+        [scanBarCodeButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
+        [view addSubview:scanBarCodeButton];
+        int offsetTop = i==0?15:5;
+        [scanBarCodeButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(lastFeatureView.mas_bottom).offset(offsetTop);
+            make.centerX.equalTo(view.mas_centerX);
+            make.height.equalTo(@(23));
+            make.width.equalTo(@(240));
+        }];
+        lastFeatureView = scanBarCodeButton;
+        i++;
+    }
+    
+    NSArray* products = [[BuyTool sharedInstance] getSubsProducts];
+    
+    UILabel* trialPriceTitle = [[UILabel alloc] init];
+    trialPriceTitle.numberOfLines=2;
+    trialPriceTitle.font = [UIFont systemFontOfSize:14];
+    SubscriptionData* data = products.firstObject;
+    trialPriceTitle.text = [NSString stringWithFormat:@"3 days for free\n then %@/month",data.amountDisplay];
+    trialPriceTitle.textColor = [UIColor blackColor];
+    trialPriceTitle.textAlignment = NSTextAlignmentCenter;
+    [view addSubview:trialPriceTitle];
+    [trialPriceTitle mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(lastFeatureView.mas_bottom).offset(10*multiple);
+        make.centerX.equalTo(view.mas_centerX);
+        make.left.equalTo(view.mas_left);
+        make.right.equalTo(view.mas_right);
+        make.height.equalTo(@(70*multiple));
+    }];
+    
+    UIButton* lastBtn;
+    UIButton * buyBtn = [[UIButton alloc]init];
+    int index=0;
+    if(index<products.count)
+    {
+        [view addSubview:buyBtn];
+        buyBtn.tag=index;
+        [buyBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(view.mas_centerX);
+            make.top.equalTo(trialPriceTitle.mas_bottom).offset(5*multiple);
+            make.width.equalTo(@(320*multiple));
+            make.height.equalTo(@(70*multiple));
+        }];
+        buyBtn.backgroundColor = [UIColor colorWithRed:107/255.0 green:185/255.0 blue:70/255.0 alpha:1];
+        SubscriptionData* data = products[index];
+        NSLog(@"price = %@",data.amountDisplay);
+        [buyBtn setTitle:@"START TRIAL NOW" forState:UIControlStateNormal];
+        [buyBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        buyBtn.titleLabel.font = [UIFont boldSystemFontOfSize:17];
+        UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(buyAction:)];
+        [buyBtn addGestureRecognizer:tap];
+        buyBtn.layer.cornerRadius = 5;
+        lastBtn = buyBtn;
+    }
+    
+    
+    UILabel* privacyLbl = [[UILabel alloc] init];
+    privacyLbl.numberOfLines=1;
+    privacyLbl.font = [UIFont systemFontOfSize:13];
+    privacyLbl.adjustsFontSizeToFitWidth = YES;
+    privacyLbl.text = @"Subscription renews automatically. Cancel anytime";
+    privacyLbl.textAlignment = NSTextAlignmentCenter;
+    privacyLbl.textColor = [UIColor blackColor];
+    [view addSubview:privacyLbl];
+    [privacyLbl mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(lastBtn.mas_bottom).offset(5*multiple);
+        make.centerX.equalTo(view.mas_centerX);
+        make.left.equalTo(view.mas_left);
+        make.right.equalTo(view.mas_right);
+    }];
+    
+    UIButton * btnPrivacy = [[UIButton alloc] init];
+    [btnPrivacy setTitle:@"Terms and Privacy Policy" forState:UIControlStateNormal];
+    [btnPrivacy setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+    [btnPrivacy addTarget:self action:@selector(privacyAction:) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:btnPrivacy];
+    btnPrivacy.titleLabel.font = [UIFont systemFontOfSize:14];
+    [btnPrivacy mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(view.mas_centerX);
+        make.top.equalTo(privacyLbl.mas_bottom).offset(5*multiple);
+        make.left.equalTo(view.mas_left);
+        make.right.equalTo(view.mas_right);
+    }];
+    
+    
+    UIButton * btnSkip = [[UIButton alloc] init];
+    [btnSkip setTitle:@"Decline this offer" forState:UIControlStateNormal];
+    [btnSkip setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+    btnSkip.titleLabel.adjustsFontSizeToFitWidth = YES;
+    btnSkip.titleLabel.font = [UIFont systemFontOfSize:14];
+    [btnSkip addTarget:self action:@selector(closeAction:) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:btnSkip];
+    [btnSkip mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(view.mas_centerX);
+        make.top.equalTo(btnPrivacy.mas_bottom).offset(5*multiple);
+        make.left.equalTo(view.mas_left);
+        make.right.equalTo(view.mas_right);
+    }];
+    
+    UIButton * btnRestore = [[UIButton alloc] init];
+    [btnRestore setTitle:@"Restore" forState:UIControlStateNormal];
+    [btnRestore setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+    btnRestore.titleLabel.adjustsFontSizeToFitWidth = YES;
+    btnRestore.titleLabel.font = [UIFont systemFontOfSize:14];
+    [btnRestore addTarget:self action:@selector(restoreAction:) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:btnRestore];
+    [btnRestore mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(view.mas_centerX);
+        make.top.equalTo(btnSkip.mas_bottom).offset(5*multiple);
+        make.left.equalTo(view.mas_left);
+        make.right.equalTo(view.mas_right);
+    }];
+    
     return view;
 }
 - (void)btnCloseClicked:(id)sender
@@ -1092,7 +1284,13 @@
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"SUBSCRIPTION_CLOSE" object:nil];
     if(self.successCtrl)
-        [[[UIApplication sharedApplication].delegate window] setRootViewController:self.successCtrl];
+    {
+        UIWindow* window = [[UIApplication sharedApplication].delegate window];
+        if(window)
+            window.rootViewController = self.successCtrl;
+        else
+            self.view.window.rootViewController = self.successCtrl;
+    }
 }
 - (NSString*) getStringWithSubData:(SubscriptionData*)data
 {
@@ -1141,7 +1339,13 @@
     if ([[UserData sharedInstance] isVip])
     {
         if(self.successCtrl)
-            [[[UIApplication sharedApplication].delegate window] setRootViewController:self.successCtrl];
+        {
+            UIWindow* window = [[UIApplication sharedApplication].delegate window];
+            if(window)
+                window.rootViewController = self.successCtrl;
+            else
+                self.view.window.rootViewController = self.successCtrl;
+        }
         [AlertTool showGoitTip:_successCtrl title:@"Thanks for purchasing." aftrt:nil];
         [self btnCloseClicked:nil];
     }
@@ -1151,7 +1355,13 @@
             if (status == 0) {
                 if ([[UserData sharedInstance] isVip]){
                     if(self.successCtrl)
-                        [[[UIApplication sharedApplication].delegate window] setRootViewController:self.successCtrl];
+                    {
+                        UIWindow* window = [[UIApplication sharedApplication].delegate window];
+                        if(window)
+                            window.rootViewController = self.successCtrl;
+                        else
+                            self.view.window.rootViewController = self.successCtrl;
+                    }
                     [AlertTool showGoitTip:_successCtrl title:@"Thanks for purchasing." aftrt:nil];
                     [self btnCloseClicked:nil];
                 }

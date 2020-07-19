@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SBLibraryV2'
-  s.version          = '0.3.2'
-  s.summary          = 'A short description of SBLibraryV2.'
+  s.version          = '0.4.0'
+  s.summary          = 'Support 3 mode: halfscreen, fullscreen with pages, onescreen'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?

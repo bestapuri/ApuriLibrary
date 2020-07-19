@@ -21,6 +21,8 @@
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
+		6045D90B24C3927F00DE0912 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6045D90A24C3927F00DE0912 /* SceneDelegate.m */; };
+		6045D90D24C41B5100DE0912 /* localConfigOneScreen.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6045D90C24C41B5100DE0912 /* localConfigOneScreen.plist */; };
 		608B0D7E1F4F177C000CAB89 /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = 608B0D781F4F177C000CAB89 /* .gitkeep */; };
 		608B0D7F1F4F177C000CAB89 /* iap-close.png in Resources */ = {isa = PBXBuildFile; fileRef = 608B0D791F4F177C000CAB89 /* iap-close.png */; };
 		608B0D801F4F177C000CAB89 /* localConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 608B0D7A1F4F177C000CAB89 /* localConfig.plist */; };
@@ -73,6 +75,9 @@
 		6003F5B7195388D20070C39A /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
+		6045D90924C3927F00DE0912 /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
+		6045D90A24C3927F00DE0912 /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
+		6045D90C24C41B5100DE0912 /* localConfigOneScreen.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = localConfigOneScreen.plist; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		608B0D781F4F177C000CAB89 /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
 		608B0D791F4F177C000CAB89 /* iap-close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iap-close.png"; sourceTree = "<group>"; };
@@ -173,6 +178,8 @@
 				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
+				6045D90924C3927F00DE0912 /* SceneDelegate.h */,
+				6045D90A24C3927F00DE0912 /* SceneDelegate.m */,
 			);
 			name = "Example for SBLibrary";
 			path = SBLibrary;
@@ -211,6 +218,7 @@
 		608B0D771F4F177C000CAB89 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				6045D90C24C41B5100DE0912 /* localConfigOneScreen.plist */,
 				60B5D1A8215AADBE0004D517 /* green_check.png */,
 				60B5D1A9215AADBE0004D517 /* green_check@2x.png */,
 				60B5D1A6215A9C1C0004D517 /* AppDetailIcon.png */,
@@ -316,6 +324,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -354,6 +363,7 @@
 				608B0D7F1F4F177C000CAB89 /* iap-close.png in Resources */,
 				60F37C0A1F6DB55A00ED2FA7 /* popular_icon.png in Resources */,
 				60B5D1AA215AADBF0004D517 /* green_check.png in Resources */,
+				6045D90D24C41B5100DE0912 /* localConfigOneScreen.plist in Resources */,
 				608B0D821F4F177C000CAB89 /* service.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -443,6 +453,7 @@
 				6003F59E195388D20070C39A /* SBAppDelegate.m in Sources */,
 				6003F5A7195388D20070C39A /* SBViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
+				6045D90B24C3927F00DE0912 /* SceneDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>app_id</key>
+	<string>1274553144</string>
+	<key>shared_secret</key>
+	<string>05780f60c2bd4927b96fa2269802c71c</string>
+	<key>tutorials</key>
+	<array>
+		<string>tutor1</string>
+		<string>tutor2</string>
+		<string>tutor3</string>
+	</array>
+	<key>appName</key>
+	<string>Web Recorder</string>
+	<key>subscriptionName</key>
+	<string>Pro Version Subscriptions</string>
+	<key>appUnlock</key>
+	<string>Access unlimited features and record your video games</string>
+	<key>privacyText</key>
+	<string>Web Recorder subscriptions will renew within 24 hours before the subscription period ends, and you will be charged through your iTunes account.
+        
+        If you purchase a new Web Recorder during a free trial, you will forfeit any free trial period remaining from your first subscription.
+        
+        You can manage and cancel your subscription in your iTunes Account Settings at any time.</string>
+	<key>IAPIds</key>
+	<array>
+		<string>1</string>
+	</array>
+	<key>appFeatures</key>
+	<array>
+		<string>Unlimited Downloading</string>
+		<string>Unlimited Sharing</string>
+		<string>Remove ads</string>
+	</array>
+</dict>
+</plist>
