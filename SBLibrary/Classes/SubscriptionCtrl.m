@@ -18,6 +18,7 @@
 @import CHIPageControl;
 //#define NUM_PAGE 4
 #define isiPhone5  ([[UIScreen mainScreen] bounds].size.height == 568)?TRUE:FALSE
+#define IsIPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 @interface SubscriptionCtrl ()<UIScrollViewDelegate,WKUIDelegate>{
     
     CHIPageControlAji *pageControl;
@@ -1145,7 +1146,7 @@
             NSLog(@"price = %@",data.amountDisplay);
             [buyBtn setTitle:@"START TRIAL NOW" forState:UIControlStateNormal];
             [buyBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-            buyBtn.titleLabel.font = [UIFont boldSystemFontOfSize:20];
+            buyBtn.titleLabel.font = [UIFont boldSystemFontOfSize:IsIPAD?18:20];
             UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(buyAction:)];
             [buyBtn addGestureRecognizer:tap];
             buyBtn.layer.cornerRadius = 5;
@@ -1158,7 +1159,7 @@
     
     UILabel* trialPriceTitle = [[UILabel alloc] init];
     trialPriceTitle.numberOfLines=2;
-    trialPriceTitle.font = [UIFont systemFontOfSize:14];
+    trialPriceTitle.font = [UIFont systemFontOfSize:IsIPAD?17:14];
     trialPriceTitle.text = [NSString stringWithFormat:@"3 days for free\n then %@/month",data.amountDisplay];
     trialPriceTitle.textColor = [UIColor blackColor];
     trialPriceTitle.textAlignment = NSTextAlignmentCenter;

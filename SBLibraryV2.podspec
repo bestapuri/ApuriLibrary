@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SBLibraryV2'
-  s.version          = '0.5.0'
+  s.version          = '0.5.1'
   s.summary          = 'Support 4 modes: halfscreen, fullscreen with pages, onescreen, halfscreen_onesubs'
 
 # This description is used to generate tags and improve search results.
