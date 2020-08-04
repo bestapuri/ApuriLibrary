@@ -71,7 +71,7 @@
            ctrl = window.rootViewController;
        else
            ctrl = self;
-       __block UIViewController* returnCtrl = [[BuyTool sharedInstance] showActiveSBTrial:ctrl completion:^{
+    __block UIViewController* returnCtrl = [[BuyTool sharedInstance] showActiveSBTrial:ctrl isSkip:YES completion:^{
            [returnCtrl removeFromParentViewController];
            [returnCtrl.view removeFromSuperview];
            returnCtrl = nil;

@@ -1144,9 +1144,19 @@
             }];
             buyBtn.backgroundColor = [UIColor colorWithRed:107/255.0 green:185/255.0 blue:70/255.0 alpha:1];
             NSLog(@"price = %@",data.amountDisplay);
-            [buyBtn setTitle:@"START TRIAL NOW" forState:UIControlStateNormal];
+            if(!_isSkip)
+            {
+                NSString* title = [NSString stringWithFormat:@"Subscribe for %@/ month",data.amountDisplay];
+                [buyBtn setTitle:title forState:UIControlStateNormal];
+                buyBtn.titleLabel.font = [UIFont boldSystemFontOfSize:18];
+            }
+            else
+            {
+                [buyBtn setTitle:@"START TRIAL NOW" forState:UIControlStateNormal];
+                buyBtn.titleLabel.font = [UIFont boldSystemFontOfSize:20];
+            }
+            
             [buyBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-            buyBtn.titleLabel.font = [UIFont boldSystemFontOfSize:IsIPAD?18:20];
             UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(buyAction:)];
             [buyBtn addGestureRecognizer:tap];
             buyBtn.layer.cornerRadius = 5;
@@ -1159,8 +1169,18 @@
     
     UILabel* trialPriceTitle = [[UILabel alloc] init];
     trialPriceTitle.numberOfLines=2;
-    trialPriceTitle.font = [UIFont systemFontOfSize:IsIPAD?17:14];
-    trialPriceTitle.text = [NSString stringWithFormat:@"3 days for free\n then %@/month",data.amountDisplay];
+    if(!_isSkip)
+    {
+        trialPriceTitle.font = [UIFont systemFontOfSize:18];
+        trialPriceTitle.text = [NSString stringWithFormat:@"Start with 3 days free trial"];
+    }
+    else
+    {
+        trialPriceTitle.font = [UIFont systemFontOfSize:14];
+        trialPriceTitle.text = [NSString stringWithFormat:@"3 days for free\n then %@/month",data.amountDisplay];
+    }
+    
+    
     trialPriceTitle.textColor = [UIColor blackColor];
     trialPriceTitle.textAlignment = NSTextAlignmentCenter;
     [view addSubview:trialPriceTitle];

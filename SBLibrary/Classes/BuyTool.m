@@ -106,10 +106,11 @@ options:UIViewAnimationOptionTransitionCrossDissolve //change to whatever animat
     return sbCtrl;
 }
 
-- (UIViewController*)showActiveSBTrial:(UIViewController*)ctrl completion:(void (^)(void))completion;
+- (UIViewController*)showActiveSBTrial:(UIViewController*)ctrl isSkip:(BOOL)isSkip completion:(void (^)(void))completion;
 {
     SubscriptionCtrl* sbCtrl = [[SubscriptionCtrl alloc] init];
     sbCtrl.screenType = HALFSCREEN_TRIAL;
+    sbCtrl.isSkip = isSkip;
     sbCtrl.blockComplete = completion;
     self.subCtrl = sbCtrl;
     [UIView transitionWithView:ctrl.view duration:0.5
