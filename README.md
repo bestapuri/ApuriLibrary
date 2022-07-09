@@ -1,4 +1,4 @@
-# SBLibrary
+# ApuriLibrary
 
 [![CI Status](http://img.shields.io/travis/NguyenTran/SBLibrary.svg?style=flat)](https://travis-ci.org/NguyenTran/SBLibrary)
 [![Version](https://img.shields.io/cocoapods/v/SBLibrary.svg?style=flat)](http://cocoapods.org/pods/SBLibrary)
@@ -13,7 +13,7 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## Installation
 
-SBLibrary is available through [CocoaPods](http://cocoapods.org). To install
+ApuriLibrary is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
