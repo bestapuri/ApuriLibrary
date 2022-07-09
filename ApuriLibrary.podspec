@@ -7,7 +7,7 @@
 #
 
 Pod::Spec.new do |s|
-  s.name             = 'SBLibraryV2'
+  s.name             = 'ApuriLibrary'
   s.version          = '0.5.2'
   s.summary          = 'Support 4 modes: halfscreen, fullscreen with pages, onescreen, halfscreen_onesubs'
 
@@ -21,19 +21,19 @@ Pod::Spec.new do |s|
 TODO: Add long description of the pod here.
                        DESC
 
-s.homepage         = 'https://github.com/GameStar4Kid/SBLibraryV2'
+s.homepage         = 'https://github.com/bestapuri/ApuriLibrary'
 # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
 s.license          = { :type => 'MIT', :file => 'LICENSE' }
-s.author           = { 'harryjury@gmail.com' => 'gamestar4kid@gmail.com' }
-s.source           = { :git => 'https://github.com/GameStar4Kid/SBLibraryV2.git', :tag => s.version.to_s }
+s.author           = { 'o0jinus0o@gmail.com' => 'o0jinus0o@gmail.com' }
+s.source           = { :git => 'https://github.com/bestapuri/ApuriLibrary.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '10.0'
 
-  s.source_files = 'SBLibrary/Classes/**/*'
+  s.source_files = 'Apuri/Classes/**/*'
   
 s.resource_bundles = {
-    'SBLibraryV2' => ['SBLibrary/Assets/*.*']
+    'ApuriLibrary' => ['ApuriLibrary/Assets/*.*']
 }
 s.swift_versions = ['4.0', '4.2']
 #s.public_header_files = 'Pod/Classes/**/*.h'

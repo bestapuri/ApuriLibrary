@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6003F589195388D20070C39A"
-               BuildableName = "SBLibrary_Example.app"
-               BlueprintName = "SBLibrary_Example"
-               ReferencedContainer = "container:SBLibrary.xcodeproj">
+               BuildableName = "ApuriLibrary_Example.app"
+               BlueprintName = "ApuriLibrary_Example"
+               ReferencedContainer = "container:ApuriLibrary.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -31,9 +31,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6003F589195388D20070C39A"
-            BuildableName = "SBLibrary_Example.app"
-            BlueprintName = "SBLibrary_Example"
-            ReferencedContainer = "container:SBLibrary.xcodeproj">
+            BuildableName = "ApuriLibrary_Example.app"
+            BlueprintName = "ApuriLibrary_Example"
+            ReferencedContainer = "container:ApuriLibrary.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <Testables>
@@ -42,9 +42,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6003F5AD195388D20070C39A"
-               BuildableName = "SBLibrary_Tests.xctest"
-               BlueprintName = "SBLibrary_Tests"
-               ReferencedContainer = "container:SBLibrary.xcodeproj">
+               BuildableName = "ApuriLibrary_Tests.xctest"
+               BlueprintName = "ApuriLibrary_Tests"
+               ReferencedContainer = "container:ApuriLibrary.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -64,9 +64,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6003F589195388D20070C39A"
-            BuildableName = "SBLibrary_Example.app"
-            BlueprintName = "SBLibrary_Example"
-            ReferencedContainer = "container:SBLibrary.xcodeproj">
+            BuildableName = "ApuriLibrary_Example.app"
+            BlueprintName = "ApuriLibrary_Example"
+            ReferencedContainer = "container:ApuriLibrary.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -81,9 +81,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6003F589195388D20070C39A"
-            BuildableName = "SBLibrary_Example.app"
-            BlueprintName = "SBLibrary_Example"
-            ReferencedContainer = "container:SBLibrary.xcodeproj">
+            BuildableName = "ApuriLibrary_Example.app"
+            BlueprintName = "ApuriLibrary_Example"
+            ReferencedContainer = "container:ApuriLibrary.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

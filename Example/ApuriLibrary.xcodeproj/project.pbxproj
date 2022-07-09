@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		127876A57C37B47AC90619E2 /* Pods_SBLibrary_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1332540C9897F1D63E290659 /* Pods_SBLibrary_Tests.framework */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -41,7 +40,7 @@
 		60F37C0C1F6E3DAF00ED2FA7 /* helpSB.png in Resources */ = {isa = PBXBuildFile; fileRef = 60F37C0B1F6E3DAF00ED2FA7 /* helpSB.png */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
-		BABEF7DB414C9C68434E3754 /* Pods_SBLibrary_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14BB4C3B2D359B6F47A6484B /* Pods_SBLibrary_Example.framework */; };
+		939B73708182209E74EB0814 /* Pods_ApuriLibrary_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B865C66F52CCDE1F585813F4 /* Pods_ApuriLibrary_Example.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,22 +54,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1332540C9897F1D63E290659 /* Pods_SBLibrary_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SBLibrary_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		14BB4C3B2D359B6F47A6484B /* Pods_SBLibrary_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SBLibrary_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6003F58A195388D20070C39A /* SBLibrary_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SBLibrary_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6003F58A195388D20070C39A /* ApuriLibrary_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ApuriLibrary_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		6003F591195388D20070C39A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		6003F595195388D20070C39A /* SBLibrary-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SBLibrary-Info.plist"; sourceTree = "<group>"; };
+		6003F595195388D20070C39A /* ApuriLibrary-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ApuriLibrary-Info.plist"; sourceTree = "<group>"; };
 		6003F597195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6003F599195388D20070C39A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		6003F59B195388D20070C39A /* SBLibrary-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SBLibrary-Prefix.pch"; sourceTree = "<group>"; };
+		6003F59B195388D20070C39A /* ApuriLibrary-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ApuriLibrary-Prefix.pch"; sourceTree = "<group>"; };
 		6003F59C195388D20070C39A /* SBAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SBAppDelegate.h; sourceTree = "<group>"; };
 		6003F59D195388D20070C39A /* SBAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SBAppDelegate.m; sourceTree = "<group>"; };
 		6003F5A5195388D20070C39A /* SBViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SBViewController.h; sourceTree = "<group>"; };
 		6003F5A6195388D20070C39A /* SBViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SBViewController.m; sourceTree = "<group>"; };
 		6003F5A8195388D20070C39A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		6003F5AE195388D20070C39A /* SBLibrary_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SBLibrary_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6003F5AE195388D20070C39A /* ApuriLibrary_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ApuriLibrary_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F5AF195388D20070C39A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		6003F5B7195388D20070C39A /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -95,14 +92,15 @@
 		60F37C071F6D9CEE00ED2FA7 /* bgSB.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bgSB.jpg; sourceTree = "<group>"; };
 		60F37C091F6DB55A00ED2FA7 /* popular_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = popular_icon.png; sourceTree = "<group>"; };
 		60F37C0B1F6E3DAF00ED2FA7 /* helpSB.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = helpSB.png; sourceTree = "<group>"; };
+		60FFF5944BB015E7A0056F53 /* Pods-ApuriLibrary_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ApuriLibrary_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ApuriLibrary_Example/Pods-ApuriLibrary_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		7DCCF8229F787BA86955DD7F /* Pods-SBLibrary_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SBLibrary_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SBLibrary_Tests/Pods-SBLibrary_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8C02BE84EA7109883DC54603 /* Pods-SBLibrary_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SBLibrary_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-SBLibrary_Example/Pods-SBLibrary_Example.release.xcconfig"; sourceTree = "<group>"; };
 		9481F2C36B08C19A6B66C01C /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		994E7495629BA1472222F0B0 /* Pods-ApuriLibrary_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ApuriLibrary_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-ApuriLibrary_Example/Pods-ApuriLibrary_Example.release.xcconfig"; sourceTree = "<group>"; };
+		B865C66F52CCDE1F585813F4 /* Pods_ApuriLibrary_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ApuriLibrary_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7BD106D1BACCC4147DC2BE5 /* Pods-SBLibrary_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SBLibrary_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SBLibrary_Example/Pods-SBLibrary_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		E0ABEC5DD0E10370AAEA86BF /* Pods-SBLibrary_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SBLibrary_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SBLibrary_Tests/Pods-SBLibrary_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		F304974D63C5E57DC204D51F /* SBLibraryV2.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = SBLibraryV2.podspec; path = ../SBLibraryV2.podspec; sourceTree = "<group>"; };
+		F304974D63C5E57DC204D51F /* ApuriLibrary.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = ApuriLibrary.podspec; path = ../ApuriLibrary.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		FB788C66BDAD9BA6984CC17A /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -114,7 +112,7 @@
 				6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */,
 				6003F592195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F58E195388D20070C39A /* Foundation.framework in Frameworks */,
-				BABEF7DB414C9C68434E3754 /* Pods_SBLibrary_Example.framework in Frameworks */,
+				939B73708182209E74EB0814 /* Pods_ApuriLibrary_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,7 +123,6 @@
 				6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */,
 				6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */,
-				127876A57C37B47AC90619E2 /* Pods_SBLibrary_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,8 +145,8 @@
 		6003F58B195388D20070C39A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6003F58A195388D20070C39A /* SBLibrary_Example.app */,
-				6003F5AE195388D20070C39A /* SBLibrary_Tests.xctest */,
+				6003F58A195388D20070C39A /* ApuriLibrary_Example.app */,
+				6003F5AE195388D20070C39A /* ApuriLibrary_Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -161,8 +158,7 @@
 				6003F58F195388D20070C39A /* CoreGraphics.framework */,
 				6003F591195388D20070C39A /* UIKit.framework */,
 				6003F5AF195388D20070C39A /* XCTest.framework */,
-				14BB4C3B2D359B6F47A6484B /* Pods_SBLibrary_Example.framework */,
-				1332540C9897F1D63E290659 /* Pods_SBLibrary_Tests.framework */,
+				B865C66F52CCDE1F585813F4 /* Pods_ApuriLibrary_Example.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -188,10 +184,10 @@
 		6003F594195388D20070C39A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				6003F595195388D20070C39A /* SBLibrary-Info.plist */,
+				6003F595195388D20070C39A /* ApuriLibrary-Info.plist */,
 				6003F596195388D20070C39A /* InfoPlist.strings */,
 				6003F599195388D20070C39A /* main.m */,
-				6003F59B195388D20070C39A /* SBLibrary-Prefix.pch */,
+				6003F59B195388D20070C39A /* ApuriLibrary-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -242,7 +238,7 @@
 		60FF7A9C1954A5C5007DD14C /* Podspec Metadata */ = {
 			isa = PBXGroup;
 			children = (
-				F304974D63C5E57DC204D51F /* SBLibraryV2.podspec */,
+				F304974D63C5E57DC204D51F /* ApuriLibrary.podspec */,
 				FB788C66BDAD9BA6984CC17A /* README.md */,
 				9481F2C36B08C19A6B66C01C /* LICENSE */,
 			);
@@ -254,8 +250,8 @@
 			children = (
 				C7BD106D1BACCC4147DC2BE5 /* Pods-SBLibrary_Example.debug.xcconfig */,
 				8C02BE84EA7109883DC54603 /* Pods-SBLibrary_Example.release.xcconfig */,
-				7DCCF8229F787BA86955DD7F /* Pods-SBLibrary_Tests.debug.xcconfig */,
-				E0ABEC5DD0E10370AAEA86BF /* Pods-SBLibrary_Tests.release.xcconfig */,
+				60FFF5944BB015E7A0056F53 /* Pods-ApuriLibrary_Example.debug.xcconfig */,
+				994E7495629BA1472222F0B0 /* Pods-ApuriLibrary_Example.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -263,30 +259,30 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		6003F589195388D20070C39A /* SBLibrary_Example */ = {
+		6003F589195388D20070C39A /* ApuriLibrary_Example */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6003F5BF195388D20070C39A /* Build configuration list for PBXNativeTarget "SBLibrary_Example" */;
+			buildConfigurationList = 6003F5BF195388D20070C39A /* Build configuration list for PBXNativeTarget "ApuriLibrary_Example" */;
 			buildPhases = (
 				B339995911C68111079D217F /* [CP] Check Pods Manifest.lock */,
 				6003F586195388D20070C39A /* Sources */,
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
 				7578F7916212F15F4196DD18 /* [CP] Embed Pods Frameworks */,
+				2C9DD4A812F286D59104226B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = SBLibrary_Example;
+			name = ApuriLibrary_Example;
 			productName = SBLibrary;
-			productReference = 6003F58A195388D20070C39A /* SBLibrary_Example.app */;
+			productReference = 6003F58A195388D20070C39A /* ApuriLibrary_Example.app */;
 			productType = "com.apple.product-type.application";
 		};
-		6003F5AD195388D20070C39A /* SBLibrary_Tests */ = {
+		6003F5AD195388D20070C39A /* ApuriLibrary_Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6003F5C2195388D20070C39A /* Build configuration list for PBXNativeTarget "SBLibrary_Tests" */;
+			buildConfigurationList = 6003F5C2195388D20070C39A /* Build configuration list for PBXNativeTarget "ApuriLibrary_Tests" */;
 			buildPhases = (
-				14A0C30421EA49065E3F9767 /* [CP] Check Pods Manifest.lock */,
 				6003F5AA195388D20070C39A /* Sources */,
 				6003F5AB195388D20070C39A /* Frameworks */,
 				6003F5AC195388D20070C39A /* Resources */,
@@ -296,9 +292,9 @@
 			dependencies = (
 				6003F5B4195388D20070C39A /* PBXTargetDependency */,
 			);
-			name = SBLibrary_Tests;
+			name = ApuriLibrary_Tests;
 			productName = SBLibraryTests;
-			productReference = 6003F5AE195388D20070C39A /* SBLibrary_Tests.xctest */;
+			productReference = 6003F5AE195388D20070C39A /* ApuriLibrary_Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -312,14 +308,15 @@
 				ORGANIZATIONNAME = "doianhkhoviai@me.com";
 				TargetAttributes = {
 					6003F589195388D20070C39A = {
-						DevelopmentTeam = N63Q822CTT;
+						DevelopmentTeam = VLY7A7BKBG;
 					};
 					6003F5AD195388D20070C39A = {
+						DevelopmentTeam = VLY7A7BKBG;
 						TestTargetID = 6003F589195388D20070C39A;
 					};
 				};
 			};
-			buildConfigurationList = 6003F585195388D10070C39A /* Build configuration list for PBXProject "SBLibrary" */;
+			buildConfigurationList = 6003F585195388D10070C39A /* Build configuration list for PBXProject "ApuriLibrary" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -333,8 +330,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				6003F589195388D20070C39A /* SBLibrary_Example */,
-				6003F5AD195388D20070C39A /* SBLibrary_Tests */,
+				6003F589195388D20070C39A /* ApuriLibrary_Example */,
+				6003F5AD195388D20070C39A /* ApuriLibrary_Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -379,22 +376,22 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		14A0C30421EA49065E3F9767 /* [CP] Check Pods Manifest.lock */ = {
+		2C9DD4A812F286D59104226B /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
+				"${PODS_ROOT}/Target Support Files/Pods-ApuriLibrary_Example/Pods-ApuriLibrary_Example-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/ApuriLibrary/ApuriLibrary.bundle",
 			);
-			name = "[CP] Check Pods Manifest.lock";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SBLibrary_Tests-checkManifestLockResult.txt",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ApuriLibrary.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ApuriLibrary_Example/Pods-ApuriLibrary_Example-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		7578F7916212F15F4196DD18 /* [CP] Embed Pods Frameworks */ = {
@@ -403,13 +400,12 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SBLibrary_Example/Pods-SBLibrary_Example-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-ApuriLibrary_Example/Pods-ApuriLibrary_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/CHIPageControl/CHIPageControl.framework",
 				"${BUILT_PRODUCTS_DIR}/JazzHands/JazzHands.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
-				"${BUILT_PRODUCTS_DIR}/SBLibraryV2/SBLibraryV2.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -418,11 +414,10 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JazzHands.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SBLibraryV2.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SBLibrary_Example/Pods-SBLibrary_Example-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ApuriLibrary_Example/Pods-ApuriLibrary_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B339995911C68111079D217F /* [CP] Check Pods Manifest.lock */ = {
@@ -436,7 +431,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SBLibrary_Example-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-ApuriLibrary_Example-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -470,7 +465,7 @@
 /* Begin PBXTargetDependency section */
 		6003F5B4195388D20070C39A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 6003F589195388D20070C39A /* SBLibrary_Example */;
+			target = 6003F589195388D20070C39A /* ApuriLibrary_Example */;
 			targetProxy = 6003F5B3195388D20070C39A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -578,16 +573,16 @@
 		};
 		6003F5C0195388D20070C39A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C7BD106D1BACCC4147DC2BE5 /* Pods-SBLibrary_Example.debug.xcconfig */;
+			baseConfigurationReference = 60FFF5944BB015E7A0056F53 /* Pods-ApuriLibrary_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = N63Q822CTT;
+				DEVELOPMENT_TEAM = VLY7A7BKBG;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "SBLibrary/SBLibrary-Prefix.pch";
-				INFOPLIST_FILE = "SBLibrary/SBLibrary-Info.plist";
+				GCC_PREFIX_HEADER = "SBLibrary/ApuriLibrary-Prefix.pch";
+				INFOPLIST_FILE = "SBLibrary/ApuriLibrary-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8;
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = com.jp.ka.fakecalpro;
+				PRODUCT_BUNDLE_IDENTIFIER = com.apuri.xxx.videos;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
@@ -596,16 +591,16 @@
 		};
 		6003F5C1195388D20070C39A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8C02BE84EA7109883DC54603 /* Pods-SBLibrary_Example.release.xcconfig */;
+			baseConfigurationReference = 994E7495629BA1472222F0B0 /* Pods-ApuriLibrary_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = N63Q822CTT;
+				DEVELOPMENT_TEAM = VLY7A7BKBG;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "SBLibrary/SBLibrary-Prefix.pch";
-				INFOPLIST_FILE = "SBLibrary/SBLibrary-Info.plist";
+				GCC_PREFIX_HEADER = "SBLibrary/ApuriLibrary-Prefix.pch";
+				INFOPLIST_FILE = "SBLibrary/ApuriLibrary-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8;
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = com.jp.ka.fakecalpro;
+				PRODUCT_BUNDLE_IDENTIFIER = com.apuri.xxx.videos;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
@@ -614,9 +609,9 @@
 		};
 		6003F5C3195388D20070C39A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7DCCF8229F787BA86955DD7F /* Pods-SBLibrary_Tests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = VLY7A7BKBG;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -631,16 +626,16 @@
 				INFOPLIST_FILE = "Tests/Tests-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SBLibrary_Example.app/SBLibrary_Example";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ApuriLibrary_Example.app/ApuriLibrary_Example";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
 		};
 		6003F5C4195388D20070C39A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E0ABEC5DD0E10370AAEA86BF /* Pods-SBLibrary_Tests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = VLY7A7BKBG;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -651,7 +646,7 @@
 				INFOPLIST_FILE = "Tests/Tests-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SBLibrary_Example.app/SBLibrary_Example";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ApuriLibrary_Example.app/ApuriLibrary_Example";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
@@ -659,7 +654,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		6003F585195388D10070C39A /* Build configuration list for PBXProject "SBLibrary" */ = {
+		6003F585195388D10070C39A /* Build configuration list for PBXProject "ApuriLibrary" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6003F5BD195388D20070C39A /* Debug */,
@@ -668,7 +663,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6003F5BF195388D20070C39A /* Build configuration list for PBXNativeTarget "SBLibrary_Example" */ = {
+		6003F5BF195388D20070C39A /* Build configuration list for PBXNativeTarget "ApuriLibrary_Example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6003F5C0195388D20070C39A /* Debug */,
@@ -677,7 +672,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6003F5C2195388D20070C39A /* Build configuration list for PBXNativeTarget "SBLibrary_Tests" */ = {
+		6003F5C2195388D20070C39A /* Build configuration list for PBXNativeTarget "ApuriLibrary_Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6003F5C3195388D20070C39A /* Debug */,
