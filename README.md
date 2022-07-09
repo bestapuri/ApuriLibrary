@@ -17,14 +17,14 @@ SBLibrary is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'SBLibrary' , :git => 'https://github.com/GameStar4Kid/SBLibrary.git'
+pod 'ApuriLibrary' , :git => 'https://github.com/bestapuri/ApuriLibrary.git'
 ```
 Copy Example/Assets to your project
 
 ## Author
 
-Nguyen Tran - harryjury@gmail.com
+Nguyen Tran - o0jinus0o@gmail.com
 
 ## License
 
-SBLibrary is available under the MIT license. See the LICENSE file for more info.
+ApuriLibrary is available under the MIT license. See the LICENSE file for more info.
